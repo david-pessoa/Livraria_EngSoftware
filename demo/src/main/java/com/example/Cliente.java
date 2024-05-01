@@ -1,44 +1,46 @@
 package com.example;
 
-public class Cliente
+public class Cliente//Classe para representar os clientes da loja
 {
-    protected String nome;
+    protected String nome; //Atributos
     private String CPF;
     private String email;
     private String senha;
-    private String[] carrinho;
+    private Livro[] carrinho;
     private boolean valida_login;
 
-    public Cliente()
+    public Cliente() //Construtor sem parâmetros
     {
-      this("","","","", new String[]{""});
+      this("","","","");
     }
 
-    public Cliente(String nome, String CPF, String email, String senha, String[] carrinho)
+    //Construtor com parâmetros
+    public Cliente(String nome, String CPF, String email, String senha)
     {
       this.nome = nome;
       this.CPF = CPF;
       this.email = email;
       this.senha = senha;
-      this.carrinho = carrinho;
     }
 
-    public String getNome()
-    {
-      return nome;
-    }
-
-    public void setNome(String nome)
-    {
-        this.nome = nome;
-    }
-
+    //Getters
+    public String getNome(){return nome;} 
     public String getCPF(){return CPF;}
     public String getEmail(){return email;}
-    public String getSenha(){return senha;}
-    public String[] getCarrinho(){return carrinho;}
+    private String getSenha(){return senha;}
+    public Livro[] getCarrinho(){return carrinho;}
 
-    protected boolean ValidaAcesso(String senha) //Ver se funciona com protected
+    //Setters
+    public void setNome(String nome){this.nome = nome;}
+    public void setCPF(String CPF){this.CPF = CPF;}
+    public void setEmail(String email){this.email = email;}
+    public void setSenha(String senha){this.senha = senha;}
+    
+    //Cliente add livro do carrinho
+    //Cliente remove livro do carrinho
+    //Cliente compra livro
+
+    protected boolean ValidaAcesso(String senha) //Valida o acesso a conta do cliente
     {
       if (this.senha == senha)
         return true;
