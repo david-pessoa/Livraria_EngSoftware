@@ -8,6 +8,7 @@ public class Livro
     private float preco;
     private String autor;
     private String categoria;
+    //Livro está disponível no catálogo?
 
     // Construtor
     public Livro(int id, String nome, float preco, String autor, String categoria) {
@@ -34,6 +35,8 @@ public class Livro
     public int getId() {
         return id;
     }
+
+    //Colocar os setters também...
 
     
 }
