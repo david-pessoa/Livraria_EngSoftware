@@ -55,16 +55,4 @@ public class Catalogo
       }
       return resposta;
     }
-  
-    public float CalculaPreco(int id_livro)
-    {
-      for (int i = 0; i < num_total_livros; i++)
-      {
-        if (livros[i].getId() == id_livro)
-        {
-          return livros[i].getPreco();
-        }
-      }
-      return 0;
-    }
   }
