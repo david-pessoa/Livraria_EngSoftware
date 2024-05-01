@@ -1,6 +1,6 @@
 package com.example;
 
-public class Cliente extends Clientes
+public class Cliente
 {
     protected String nome;
     private String CPF;
@@ -26,6 +26,11 @@ public class Cliente extends Clientes
     public String getNome()
     {
       return nome;
+    }
+
+    public void setNome(String nome)
+    {
+        this.nome = nome;
     }
 
     public String getCPF(){return CPF;}
