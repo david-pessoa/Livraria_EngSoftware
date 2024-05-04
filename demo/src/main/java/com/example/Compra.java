@@ -24,8 +24,14 @@ public class Compra
      this.quantidade = quantidade;
      this.data_compra = LocalDate.now().toString();
      this.valor_compra = calculaTotalCompra();
-   } 
+   }
 
+   public int getId_compra() {return id_compra;}
+   public String getData_compra() {return data_compra;}
+   public Livro getItem() {return item;}
+   public int getQuantidade() {return quantidade;}
+   public float getValor_compra() {return valor_compra;}
+  
    private int geraID()
    {
       Random random = new Random();

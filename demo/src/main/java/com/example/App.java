@@ -1,8 +1,8 @@
 package com.example;
+import java.util.Scanner;
 
 public class App //App == Boundary
 {
-    static final int MAX_CLIENTES = 100; //Número máximo de clientes
     public static void main( String[] args )
     {
         
@@ -21,7 +21,10 @@ public class App //App == Boundary
         7) Fornecedor reabastece estoque (?)
         */
 
-        
+        Scanner s = new Scanner(System.in);
+        Cliente joao = new Cliente("João", "999999", "exemplo@email.com", "senha");
+
+        //Catalogo catalogo = new Catalogo(0, 0, args, null)
         
 
 
