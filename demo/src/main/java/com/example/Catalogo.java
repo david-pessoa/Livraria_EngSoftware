@@ -1,19 +1,24 @@
 package com.example;
 
+import java.util.LinkedList;
+
 public class Catalogo 
 {
     private int num_total_livros; //total de livros do catálogo
     private int quant_de_categorias; //Número de categorias
     private String[] categorias;
-    private Livro[] livros;
+    private LinkedList<Livro> livros_do_catalogo;
   
     //Construtor com parâmetros
-    public Catalogo(int num_total_livros, int quant_de_categorias, String[] categorias,Livro[] livros){
+    public Catalogo(int num_total_livros, int quant_de_categorias, String[] categorias, LinkedList<Livro> livros)
+    {
       this.num_total_livros = num_total_livros;
       this.quant_de_categorias = quant_de_categorias;
       this.categorias = categorias;
-      this.livros = livros;
+      this.livros_do_catalogo = livros;
     }
+
+    public Livro buscaLivro()
     
     public Livro[] buscaLivro(String nome)
     {

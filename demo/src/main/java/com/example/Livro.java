@@ -1,5 +1,7 @@
 package com.example;
 
+import java.util.Random;
+
 public class Livro 
 {
     // Atributos
@@ -8,16 +10,23 @@ public class Livro
     private float preco;
     private String autor;
     private String categoria;
-    //Livro está disponível no catálogo?
+    private boolean disponivel;
 
     // Construtor
-    public Livro(int id, String nome, float preco, String autor, String categoria) {
-        this.id = id;
+    public Livro(String nome, float preco, String autor, String categoria) {
+        this.id = geraID();
         this.nome = nome;
         this.preco = preco;
         this.autor = autor;
         this.categoria = categoria;
+        this.disponivel = true;
     }
+
+    private int geraID()
+   {
+      Random random = new Random();
+      return random.nextInt(10000);
+   }
 
     // Métodos de acesso (getters)
     public String getNome() {
@@ -35,6 +44,7 @@ public class Livro
     public int getId() {
         return id;
     }
+
 
     //Colocar os setters também...
 
