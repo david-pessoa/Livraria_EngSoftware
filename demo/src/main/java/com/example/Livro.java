@@ -29,24 +29,12 @@ public class Livro
    }
 
     // Métodos de acesso (getters)
-    public String getNome() {
-        return nome;
-    }
-
-    public String getAutor() {
-        return autor;
-    }
-
-    public float getPreco() {
-        return preco;
-    }
+    public String getNome() {return nome;}
+    public String getAutor() {return autor;}
+    public float getPreco() {return preco;}
+    public String getCategoria() {return categoria;}
 
     public int getId() {
         return id;
-    }
-
-
-    //Colocar os setters também...
-
-    
+    }    
 }
