@@ -2,31 +2,14 @@ package com.example;
 
 import java.util.LinkedList;
 
-class ItemCarrinho
-{
-  private Livro item;
-  private int quantidade;
-
-  public ItemCarrinho(Livro item, int quantidade)
-  {
-    this.item = item;
-    this.quantidade = quantidade;
-  }
-  public Livro getItem() {return item;}
-  public int getQuantidade() {return quantidade;}
-  public void setItem(Livro item) {this.item = item;}
-  public void setQuantidade(int quantidade) {this.quantidade = quantidade;}
-}
-
 public class Cliente//Classe para representar os clientes da loja
 {
     protected String nome; //Atributos
     private String CPF;
     private String email;
     private String senha;
-    private LinkedList<ItemCarrinho> carrinho; //Carrinho do cliente
-    private LinkedList<Compra> pedidos; //Lista de pedidos realizados pelo cliente
-    private boolean valida_login;
+    private LinkedList<ItemCarrinho> carrinho = new LinkedList<>(); //Carrinho do cliente
+    private LinkedList<Compra> pedidos = new LinkedList<>(); //Lista de pedidos realizados pelo cliente
 
     public Cliente() //Construtor sem parâmetros
     {
@@ -47,22 +30,21 @@ public class Cliente//Classe para representar os clientes da loja
     public String getCPF(){return CPF;}
     public String getEmail(){return email;}
     private String getSenha(){return senha;}
-    public boolean getValida_login() {return valida_login;}
 
     //Setters
     public void setNome(String nome){this.nome = nome;}
     public void setCPF(String CPF){this.CPF = CPF;}
     public void setEmail(String email){this.email = email;}
     public void setSenha(String senha){this.senha = senha;}
-    public void setLogado(){this.valida_login = true;}
-    public void setNaoLogado(){this.valida_login = false;}
 
+    //Método para realizar a compra de um livro do catálogo e adicionar à lista de pedidos do cliente
     public void realizaCompra(Livro livro, int qtde)
     {
       Compra compra = new Compra(livro, qtde);
       pedidos.addFirst(compra);
     }
 
+    //Método para adicionar um livro ao carrinho do cliente
     public void addNoCarrinho(Livro livro, int qtde)
     {
       ItemCarrinho new_item = new ItemCarrinho(livro, qtde);
@@ -72,32 +54,46 @@ public class Cliente//Classe para representar os clientes da loja
     //Adicionar opção de comprar um item do carrinho
     //Adicionar opção de comprar todos os itens do carrinho
 
-    public void showCarrinho()
+    public void showCarrinho() //Exibe o carrinho do cliente
     {
-      System.out.println("\tLivros no meu carrinho: ");
-      System.out.println("Nome do Livro\tQuantidade\tPreço do item");
-      for(ItemCarrinho item : carrinho)
+      if(this.carrinho.size() == 0 || this.carrinho == null)
       {
-        System.out.println(item.getItem().getNome() + "\t" + item.getQuantidade() + "\t" + (item.getItem().getPreco() * item.getQuantidade()));
+        System.out.println("Seu carrinho está vazio.");
+      }
+      else
+      {
+        System.out.println("\tLivros no meu carrinho: ");
+        System.out.println("Nome do Livro" + "\t" + "Quantidade" + "\t" + "Preço do item");
+        for(ItemCarrinho item : this.carrinho)
+        {
+          System.out.println(item.getItem().getNome() + "\t" + item.getQuantidade() + "\t" + item.calculaTotalItem());
+        }
       }
     }
 
-    public void showCompras()
+    public void showCompras() //Exibe lista de pedidos feitos pelo cliente
     {
-      System.out.println("\tMeus pedidos: ");
-      System.out.println("Nome do Livro\tQuantidade\tPreço do item");
-      for(Compra compra : pedidos)
+      if(this.pedidos.size() == 0 || this.pedidos == null)
       {
-        System.out.println(compra.getItem().getNome() + "\t" + compra.getQuantidade() + "\t" + (compra.getItem().getPreco() * compra.getQuantidade()));
+        System.out.println("Não há nenhum pedido feito ainda.");
+      }
+      else
+      {
+        System.out.println("\tMeus pedidos: ");
+        System.out.println("Nome do Livro\tQuantidade\tPreço do item\tData da compra");
+        for(Compra compra : this.pedidos)
+        {
+          System.out.println(compra.getItem().getNome() + "\t" + compra.getQuantidade() + "\t" + compra.calculaTotalCompra() + "\t" + compra.getData_compra());
+        }
       }
     }
     
     //Cliente remove livro do carrinho
     //Cliente cancela pedido
 
-    protected boolean ValidaAcesso(String senha) //Valida o acesso a conta do cliente
+    public boolean ValidaAcesso(String nome, String senha) //Valida o acesso a conta do cliente
     {
-      if (this.senha == senha)
+      if (getNome().equals(nome) && getSenha().equals(senha))
         return true;
       else
         return false;

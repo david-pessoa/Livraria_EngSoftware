@@ -4,17 +4,15 @@ import java.util.LinkedList;
 
 public class Catalogo 
 {
-    private int num_total_livros; //total de livros do catálogo
-    
     private LinkedList<Livro> livros_do_catalogo;
   
     //Construtor com parâmetros
-    public Catalogo(int num_total_livros, LinkedList<Livro> livros)
+    public Catalogo(LinkedList<Livro> livros)
     {
-      this.num_total_livros = num_total_livros;
       this.livros_do_catalogo = livros;
     }
 
+    //Procura um livro no catálogo pelo nome do livro
     public Livro buscaLivroNome(String nome)
     {
       for(Livro l : livros_do_catalogo)
@@ -25,6 +23,7 @@ public class Catalogo
       return null;
     }
 
+    //Procura um livro no catálogo pelo nome do autor
     public Livro buscaLivroAutor(String autor)
     {
       for(Livro l : livros_do_catalogo)
@@ -34,6 +33,14 @@ public class Catalogo
       }
       return null;
     }
+
+    //Retorna a uma linked list com todos os livros do catálogo
+    public LinkedList<Livro> getLivros_do_catalogo()
+    {
+        return livros_do_catalogo;
+    }
+
+    //Show Catalogo
 
 
   }

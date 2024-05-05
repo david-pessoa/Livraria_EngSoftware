@@ -4,17 +4,13 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.Random;
 
-public class Compra 
+public class Compra //Classe que representa um pedido feito pelo cliente
 {
     private int id_compra; //número de identificação ID da compra
     private float valor_compra; //valor da compra
     private String data_compra; //data da compra
-    private Livro item;
-    private int quantidade;
-    // quantidade de itens
-    // valor de cada item
-    // Cliente que comprou os livros
-    //...
+    private Livro item; //Item da compra
+    private int quantidade; //Quantidade de livros pedidos
 
   //Cosntrutor
    public Compra(Livro item, int quantidade)
@@ -32,13 +28,13 @@ public class Compra
    public int getQuantidade() {return quantidade;}
    public float getValor_compra() {return valor_compra;}
   
-   private int geraID()
+   private int geraID() //Cria um ID aleatório para o pedido
    {
       Random random = new Random();
       return random.nextInt(10000);
    }
   
-    public float calculaTotalCompra()
+    public float calculaTotalCompra() //calcula o valor total da compra
     {
       return item.getPreco() * quantidade;
     }

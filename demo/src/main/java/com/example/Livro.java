@@ -22,7 +22,7 @@ public class Livro
         this.disponivel = true;
     }
 
-    private int geraID()
+    private int geraID() //Cria ID aleatório para o livro
    {
       Random random = new Random();
       return random.nextInt(10000);
@@ -33,8 +33,5 @@ public class Livro
     public String getAutor() {return autor;}
     public float getPreco() {return preco;}
     public String getCategoria() {return categoria;}
-
-    public int getId() {
-        return id;
-    }    
+    public int getId() {return id;}    
 }
