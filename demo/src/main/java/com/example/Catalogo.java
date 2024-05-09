@@ -20,6 +20,7 @@ public class Catalogo
         if (l.getNome().equals(nome))
           return l;
       }
+      System.out.println("Esse livro não existe no catálogo!");
       return null;
     }
 
@@ -31,6 +32,7 @@ public class Catalogo
         if (l.getAutor().equals(autor))
           return l;
       }
+      System.out.println("Não foi encontrado nenhum livro deste autor no catálogo");
       return null;
     }
 

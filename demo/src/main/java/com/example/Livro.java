@@ -33,5 +33,6 @@ public class Livro
     public String getAutor() {return autor;}
     public float getPreco() {return preco;}
     public String getCategoria() {return categoria;}
-    public int getId() {return id;}    
+    public int getId() {return id;}   
+    public boolean getDisponibilidade() {return disponivel;} 
 }
