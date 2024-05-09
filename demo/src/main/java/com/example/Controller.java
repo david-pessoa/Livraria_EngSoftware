@@ -4,14 +4,15 @@ import java.util.LinkedList;
 
 public class Controller 
 {
-    private String cliente;
-    private Clientes clientes;
+    private Cliente cliente_logado;
     private Catalogo catalogo;
+    private Cliente[] lista_clientes;
 
-    public Controller(String cliente, Clientes clientes){
-        this.cliente = cliente;
-        this.clientes = clientes;
-      }
+    public Controller()
+    {
+        lista_clientes[0] = new Cliente("João", "9999999", "exemplo@gmail.com", "senha");
+        lista_clientes[1] = new Cliente("Zé", "777777777", "zezinho@gmail.com", "pandas");
+    }
     
 
     public Catalogo setUpCatalogo() //Extrai informações dos livros contidas no arquivo binário livros.bin
@@ -49,30 +50,38 @@ public class Controller
         }
     }
 
-    public boolean validaAcesso(String nome, String senha)
+    public boolean validaAcesso(String nome, String senha) //testar
     {
-        if (clientes.ValidaAcesso(nome, senha)){
-          this.cliente = nome;
-          return true;
-        } else {
-          return false;
+        for (int i = 0; i < lista_clientes.length; i++)
+        {
+            if(lista_clientes[i].ValidaAcesso(nome, senha))
+            {
+                cliente_logado = lista_clientes[i];
+                return true;
+            }          
         }
+        return false;
     }
 
-    /* fazer um show catálogo
-  public String[] buscaTodosLivros(){
-    return catalogo.buscaTodosLivros();
-  }
-  */
-  /* fazer um ver carrinho
-    public String[] verCarrinho(){
-    if (cliente == null){
-      return new String[0];
-    } else{
-      return clientes.acessaCliente(cliente).getCarrinho();
+    public void showCarrinho() //testar
+    {
+        cliente_logado.showCarrinho();
     }
-  }
-  remover do carrinho
-   */
+
+    public void addNoCarrinho(String livro_str, int qtde) //testar
+    {
+        Livro livro = catalogo.buscaLivroNome(livro_str);
+        cliente_logado.addNoCarrinho(livro, qtde);
+    }
+
+    public void removeDoCarrinho(String livro_str) //testar
+    {
+        Livro livro = catalogo.buscaLivroNome(livro_str);
+        cliente_logado.removeDoCarrinho(livro);
+    }
+
+
+
+
 }
 

@@ -40,8 +40,23 @@ public class Catalogo
         return livros_do_catalogo;
     }
 
-    //Show Catalogo (fazer)
-    //Busca livro pelo ID
+    public void showCatalogo()
+    {
+      for(Livro l : livros_do_catalogo)
+      {
+        System.out.println(l.getNome() + " Autor: " + l.getAutor() + " Categoria: " + l.getCategoria() + " Preço: " + l.getPreco());
+      }
+    }
+
+    public Livro buscaIDlivro(int id) //testar
+    {
+      for(Livro l : livros_do_catalogo)
+      {
+        if(l.getId() == id)
+          return l;
+      }
+      return null;
+    }
 
 
   }

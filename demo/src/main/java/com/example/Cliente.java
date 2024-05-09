@@ -88,7 +88,13 @@ public class Cliente//Classe para representar os clientes da loja
       }
     }
     
-    //Cliente remove livro do carrinho
+   public void removeDoCarrinho(Livro livro) //testar
+   {
+      if(carrinho.contains(livro))
+      {
+        carrinho.remove(livro);
+      }
+   }
     //Cliente cancela pedido
 
     public boolean ValidaAcesso(String nome, String senha) //Valida o acesso a conta do cliente
