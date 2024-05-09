@@ -40,7 +40,8 @@ public class Catalogo
         return livros_do_catalogo;
     }
 
-    //Show Catalogo
+    //Show Catalogo (fazer)
+    //Busca livro pelo ID
 
 
   }

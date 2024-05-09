@@ -4,7 +4,17 @@ import java.util.LinkedList;
 
 public class Controller 
 {
-    public LinkedList<Livro> setUpCatalogo() //Extrai informações dos livros contidas no arquivo binário livros.bin
+    private String cliente;
+    private Clientes clientes;
+    private Catalogo catalogo;
+
+    public Controller(String cliente, Clientes clientes){
+        this.cliente = cliente;
+        this.clientes = clientes;
+      }
+    
+
+    public Catalogo setUpCatalogo() //Extrai informações dos livros contidas no arquivo binário livros.bin
     {
         LinkedList<Livro> listaLivros = new LinkedList<>();
         
@@ -29,7 +39,8 @@ public class Controller
             dataInput.close();
             fileInput.close();
             
-            return listaLivros;
+            Catalogo catalogo = new Catalogo(listaLivros);
+            return catalogo;
         } 
         catch (IOException e) 
         {
@@ -37,5 +48,31 @@ public class Controller
             return null;
         }
     }
+
+    public boolean validaAcesso(String nome, String senha)
+    {
+        if (clientes.ValidaAcesso(nome, senha)){
+          this.cliente = nome;
+          return true;
+        } else {
+          return false;
+        }
+    }
+
+    /* fazer um show catálogo
+  public String[] buscaTodosLivros(){
+    return catalogo.buscaTodosLivros();
+  }
+  */
+  /* fazer um ver carrinho
+    public String[] verCarrinho(){
+    if (cliente == null){
+      return new String[0];
+    } else{
+      return clientes.acessaCliente(cliente).getCarrinho();
+    }
+  }
+  remover do carrinho
+   */
 }
 

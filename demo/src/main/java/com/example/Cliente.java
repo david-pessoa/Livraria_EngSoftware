@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class Cliente//Classe para representar os clientes da loja
 {
-    protected String nome; //Atributos
+    private String nome; //Atributos
     private String CPF;
     private String email;
     private String senha;
