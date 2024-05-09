@@ -34,7 +34,7 @@ public class Compra //Classe que representa um pedido feito pelo cliente
       return random.nextInt(10000);
    }
   
-    public float calculaTotalCompra() //calcula o valor total da compra
+    public float calculaTotalCompra() //calcula o valor total da compra 
     {
       return item.getPreco() * quantidade;
     }
