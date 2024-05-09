@@ -12,7 +12,7 @@ public class Compra //Classe que representa um pedido feito pelo cliente
     private Livro item; //Item da compra
     private int quantidade; //Quantidade de livros pedidos
 
-  //Cosntrutor
+  //Construtor
    public Compra(Livro item, int quantidade)
    {
      this.id_compra = geraID();

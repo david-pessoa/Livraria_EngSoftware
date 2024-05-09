@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class Cliente//Classe para representar os clientes da loja
 {
-    protected String nome; //Atributos
+    private String nome; //Atributos
     private String CPF;
     private String email;
     private String senha;
@@ -51,8 +51,31 @@ public class Cliente//Classe para representar os clientes da loja
       carrinho.addFirst(new_item);
     }
 
-    //Adicionar opção de comprar um item do carrinho
-    //Adicionar opção de comprar todos os itens do carrinho
+    //opção de comprar um item do carrinho (testar)
+    public void CompraItemDoCarrinho(int index)
+    {
+      index -= 1;
+      if(index < 0)
+      {
+        System.out.println("Índice inválido!");
+        return;
+      }
+      
+      ItemCarrinho item = carrinho.get(index);
+      carrinho.remove(index);
+      realizaCompra(item.getItem(), item.getQuantidade());
+    }
+
+    //opção de comprar todos os itens do carrinho (testar)
+    public void CompraCarrinho()
+    {
+      for(int i = 0; i < carrinho.size(); i++)
+      {
+        ItemCarrinho item = carrinho.get(i);
+        realizaCompra(item.getItem(), item.getQuantidade());
+      }
+      carrinho.clear();
+    }
 
     public void showCarrinho() //Exibe o carrinho do cliente
     {
@@ -64,9 +87,12 @@ public class Cliente//Classe para representar os clientes da loja
       {
         System.out.println("\tLivros no meu carrinho: ");
         System.out.println("Nome do Livro" + "\t" + "Quantidade" + "\t" + "Preço do item");
+        int i = 1;
         for(ItemCarrinho item : this.carrinho)
         {
-          System.out.println(item.getItem().getNome() + "\t" + item.getQuantidade() + "\t" + item.calculaTotalItem());
+          String preco = String.format("%.2f", item.calculaTotalItem());
+          System.out.println(i + ") " + item.getItem().getNome() + "\t" + item.getQuantidade() + "\t" + preco);
+          i++;
         }
       }
     }
@@ -81,14 +107,22 @@ public class Cliente//Classe para representar os clientes da loja
       {
         System.out.println("\tMeus pedidos: ");
         System.out.println("Nome do Livro\tQuantidade\tPreço do item\tData da compra");
+        int i = 1;
         for(Compra compra : this.pedidos)
         {
-          System.out.println(compra.getItem().getNome() + "\t" + compra.getQuantidade() + "\t" + compra.calculaTotalCompra() + "\t" + compra.getData_compra());
+          String preco = String.format("%.2f", compra.calculaTotalCompra());
+          System.out.println(i + ") " + compra.getItem().getNome() + "\t" + compra.getQuantidade() + "\t" + preco + "\t" + compra.getData_compra());
+          i++;
         }
       }
     }
     
-    //Cliente remove livro do carrinho
+   public void removeDoCarrinho(int index) //remove livro do carrinho do cliente pelo indice
+   {
+      index -= 1;
+      carrinho.remove(index);
+   }
+   
     //Cliente cancela pedido
 
     public boolean ValidaAcesso(String nome, String senha) //Valida o acesso a conta do cliente

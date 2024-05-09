@@ -20,6 +20,7 @@ public class Catalogo
         if (l.getNome().equals(nome))
           return l;
       }
+      System.out.println("Esse livro não existe no catálogo!");
       return null;
     }
 
@@ -31,6 +32,7 @@ public class Catalogo
         if (l.getAutor().equals(autor))
           return l;
       }
+      System.out.println("Não foi encontrado nenhum livro deste autor no catálogo");
       return null;
     }
 
@@ -40,7 +42,23 @@ public class Catalogo
         return livros_do_catalogo;
     }
 
-    //Show Catalogo
+    public void showCatalogo()
+    {
+      for(Livro l : livros_do_catalogo)
+      {
+        System.out.println(l.getNome() + " Autor: " + l.getAutor() + " Categoria: " + l.getCategoria() + " Preço: " + l.getPreco());
+      }
+    }
+
+    public Livro buscaIDlivro(int id) //testar
+    {
+      for(Livro l : livros_do_catalogo)
+      {
+        if(l.getId() == id)
+          return l;
+      }
+      return null;
+    }
 
 
   }
