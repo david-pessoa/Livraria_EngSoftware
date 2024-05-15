@@ -63,6 +63,11 @@ public class Controller
         return false;
     }
 
+    public void showCatalogo()
+    {
+        catalogo.showCatalogo();
+    }
+
     public void showCarrinho() //Mostra o carrinho do cliente
     {
         cliente_logado.showCarrinho();
@@ -119,7 +124,28 @@ public class Controller
         cliente_logado.CompraCarrinho();
     }
 
+    public String buscaLivroNome(String nome)
+    {
+        Livro livro1 = catalogo.buscaLivroNome(nome);
+        if(livro1 == null)
+            return null;
+        else
+            return livro1.getNome();
+    }
 
+    public String buscaLivroAutor(String nome)
+    {   
+        Livro livro1 = catalogo.buscaLivroAutor(nome);
+        if(livro1 == null)
+            return null;
+        else
+            return livro1.getNome();
+    }
+
+    public float getPrecoLivro(String nome)
+    {
+        return catalogo.buscaLivroNome(nome).getPreco();
+    }
 
 
 
