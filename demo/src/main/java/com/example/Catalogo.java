@@ -17,10 +17,12 @@ public class Catalogo
     {
       for(Livro l : livros_do_catalogo)
       {
-        if (l.getNome().equals(nome))
+        String temp = l.getNome();
+        temp = temp.toLowerCase();
+        nome = nome.toLowerCase();
+        if (temp.equals(nome))
           return l;
       }
-      System.out.println("Esse livro não existe no catálogo!");
       return null;
     }
 
@@ -29,10 +31,12 @@ public class Catalogo
     {
       for(Livro l : livros_do_catalogo)
       {
-        if (l.getAutor().equals(autor))
+        String temp = l.getNome();
+        temp = temp.toLowerCase();
+        autor = autor.toLowerCase();
+        if (temp.equals(autor))
           return l;
       }
-      System.out.println("Não foi encontrado nenhum livro deste autor no catálogo");
       return null;
     }
 
@@ -46,7 +50,7 @@ public class Catalogo
     {
       for(Livro l : livros_do_catalogo)
       {
-        System.out.println(l.getNome() + " Autor: " + l.getAutor() + " Categoria: " + l.getCategoria() + " Preço: " + l.getPreco());
+        System.out.println(l.getNome() + " Autor: " + l.getAutor() + " Categoria: " + l.getCategoria() + " Preço: " + l.getPreco() + "\n");
       }
     }
 
