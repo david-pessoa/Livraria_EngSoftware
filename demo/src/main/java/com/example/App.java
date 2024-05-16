@@ -6,19 +6,6 @@ public class App //App == Boundary
 {
     public static void main( String[] args )
     {
-        
-      /*
-      Menu:
-      1) Cadastro de clientes
-      2) Logar na conta do cliente
-      3) Comprar livro do carrinho
-      4) Cancelar pedido
-      5) Realizar reserva
-      6) Cliente gerencia carrinho
-        6.1) Cliente adiciona itens ao carrinho
-        6.2) Cliente remove itens do carrinho
-        6.3) Cliente compra todos (ou alguns) livros do carrinho
-      */
       Scanner s = new Scanner(System.in);
       Controller c = new Controller();
       boolean acesso_valido = false;
@@ -28,7 +15,7 @@ public class App //App == Boundary
       {
         System.out.println("\t\t Livraria.com\n");
 
-        System.out.print("Insira seu nome de usuário: ");
+        System.out.print("Insira seu nome de usuário: "); //Login de nome de usuário e senha
         username = s.nextLine();
 
         System.out.print("Insira sua senha: ");
@@ -41,12 +28,13 @@ public class App //App == Boundary
       int choice;
       System.out.println("\nBem vindo, " + username + "!\n");
       c.setUpCatalogo();
+
       while(acesso_valido == true)
       {
         //Limpar a tela quando retornar ao menu
         System.out.println("Menu:");
-        System.out.println("1) Buscar Livro no catálogo"); //3) Compra
-        System.out.println("2) Visualizar todos os livros do catálogo"); //3) Compra
+        System.out.println("1) Buscar Livro no catálogo");
+        System.out.println("2) Visualizar todos os livros do catálogo");
         System.out.println("3) Acessar meu carrinho");
         System.out.println("4) Acessar meus pedidos");
         System.out.println("5) Acessar reservas feitas");
@@ -92,6 +80,7 @@ public class App //App == Boundary
             }
             break;
           }
+          
         
           default:
           {
