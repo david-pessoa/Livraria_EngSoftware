@@ -81,7 +81,6 @@ public class App //App == Boundary
             break;
           }
           
-        
           default:
           {
             System.out.println("\nEscolha inválida!\n");
