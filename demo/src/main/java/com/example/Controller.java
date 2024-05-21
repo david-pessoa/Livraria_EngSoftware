@@ -32,6 +32,7 @@ public class Controller
                 float preco = dataInput.readFloat();
                 String autor = dataInput.readUTF();
                 String categoria = dataInput.readUTF();
+                //Lê disponibilidade
                 
                 // Criar objeto Livro e adicionar à linked list
                 Livro livro = new Livro(titulo, preco, autor, categoria);
@@ -147,6 +148,16 @@ public class Controller
         return catalogo.buscaLivroNome(nome).getPreco();
     }
 
+    public boolean getDisponibilidadeLivro(String livro_str)
+    {
+        Livro livro = catalogo.buscaLivroNome(livro_str);
+        if(livro != null)
+        {
+            return livro.getDisponibilidade();
+        }
+        else
+            return false;
+    }
 
 
 }

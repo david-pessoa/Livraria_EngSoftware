@@ -1,6 +1,8 @@
 package com.example;
 import java.util.LinkedList;
 import java.util.Scanner;
+import org.mockito.Mockito;
+import org.junit.Test;
 
 public class App //App == Boundary
 {
@@ -31,7 +33,8 @@ public class App //App == Boundary
 
       while(acesso_valido == true)
       {
-        //Limpar a tela quando retornar ao menu
+        System.out.print("\033[H\033[2J");//Limpar a tela quando retornar ao menu
+
         System.out.println("Menu:");
         System.out.println("1) Buscar Livro no catálogo");
         System.out.println("2) Visualizar todos os livros do catálogo");
@@ -46,7 +49,7 @@ public class App //App == Boundary
           case 1:
           { String fica_no_loop = "";
             while(true)
-            {
+            { System.out.print("\033[H\033[2J");
               System.out.println("\nPara voltar ao menu pressione 0\n");
               System.out.print("\nDigite o nome do livro ou autor que deseja pesquisar: ");
               String nome = s.nextLine();
@@ -75,7 +78,23 @@ public class App //App == Boundary
               else if(fica_no_loop.equals("2"))
               {
                 c.MaisInfoLivro(resultado);
-                //Colocar opção de comprar ...
+                System.out.println("Para adicionar o livro ao carrinho, aperte 3");
+                if(c.getDisponibilidadeLivro(resultado))
+                {
+                  System.out.println("Para comprar o livro, aperte 2");
+                  Integer escolhe_add = s.nextInt();
+                  if(escolhe_add == 2)
+                  {
+                    //System.out.println()
+                    
+                  }
+                  
+                }
+                else
+                {
+                  System.out.println("Livro indisponível. Para reservá-lo, digite 5");
+                }
+                
               }
             }
             break;
