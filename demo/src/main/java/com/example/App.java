@@ -31,7 +31,7 @@ public class App //App == Boundary
 
       while(acesso_valido == true)
       {
-        System.out.print("\033[H\033[2J");//Limpar a tela quando retornar ao menu
+        c.clearScreen(); //Limpar a tela quando retornar ao menu
 
         System.out.println("Menu:");
         System.out.println("1) Buscar Livro no catálogo");
@@ -47,7 +47,7 @@ public class App //App == Boundary
           case 1:
           { String fica_no_loop = "";
             while(true)
-            { System.out.print("\033[H\033[2J");
+            { c.clearScreen(); //Limpa a tela
               System.out.println("\nPara voltar ao menu pressione 0\n");
               System.out.print("\nDigite o nome do livro ou autor que deseja pesquisar: ");
               String nome = s.nextLine();
