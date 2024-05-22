@@ -1,5 +1,4 @@
 package com.example;
-
 import java.util.LinkedList;
 
 public class Cliente//Classe para representar os clientes da loja

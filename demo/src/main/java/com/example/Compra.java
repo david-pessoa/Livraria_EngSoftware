@@ -1,7 +1,6 @@
 package com.example;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Random;
 
 public class Compra //Classe que representa um pedido feito pelo cliente

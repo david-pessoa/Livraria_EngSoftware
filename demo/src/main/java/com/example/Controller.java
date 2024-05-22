@@ -89,7 +89,10 @@ public class Controller
         {
             Livro livro = catalogo.buscaLivroNome(livro_str); //busca o livro no catálogo
             if(livro != null)
+            {
                 cliente_logado.addNoCarrinho(livro, qtde);
+                System.out.println("Livro adicionado com sucesso!");
+            }
         }
     }
 
@@ -110,7 +113,7 @@ public class Controller
             System.out.println("Nome: " + livro.getNome());
             System.out.println("Autor " + livro.getAutor());
             System.out.println("Categoria: " + livro.getCategoria());
-            System.out.println("Preço: " + livro.getPreco());
+            System.out.printf("Preço: R$%.2f %n", livro.getPreco());
             System.out.println("Disponibilidade: " + livro.getDisponibilidade());
         }
     }
@@ -157,6 +160,34 @@ public class Controller
         }
         else
             return false;
+    }
+
+    public void realizaCompra(String livro_str, int qtde)
+    {
+        if (qtde <= 0) 
+        {
+            System.out.println("Valor para quantidade de livros inválido!");
+        }
+        else
+        {
+            Livro livro = catalogo.buscaLivroNome(livro_str); //busca o livro no catálogo
+            if(livro != null)
+            {
+                cliente_logado.addNoCarrinho(livro, qtde);
+                System.out.println("Livro adicionado com sucesso!");
+            }
+        }
+    }
+
+    public void sleep()
+    {
+        try 
+                    {
+                      Thread.sleep(1500);
+                    } catch(InterruptedException e) 
+                    {
+                      System.out.println("Erro!");
+                    }
     }
 
 

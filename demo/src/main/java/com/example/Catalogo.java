@@ -47,10 +47,11 @@ public class Catalogo
     }
 
     public void showCatalogo()
-    {
+    { System.out.println("Nome: \t Autor: \t" + " Categoria: \t" + " Preço: \t" + "Disponibilidade\n");
       for(Livro l : livros_do_catalogo)
       {
-        System.out.println(l.getNome() + " Autor: " + l.getAutor() + " Categoria: " + l.getCategoria() + " Preço: " + l.getPreco() + "\n");
+        System.out.printf(l.getNome() + "\t" + l.getAutor() + "\t" + l.getCategoria() + "\tR$%.2f", l.getPreco()); //Pesquisar como deixar alinhado
+        System.out.println("\n");
       }
     }
 

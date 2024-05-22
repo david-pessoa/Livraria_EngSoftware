@@ -1,8 +1,6 @@
 package com.example;
 import java.util.LinkedList;
 import java.util.Scanner;
-import org.mockito.Mockito;
-import org.junit.Test;
 
 public class App //App == Boundary
 {
@@ -66,7 +64,7 @@ public class App //App == Boundary
               }
               else
               {
-                System.out.println(resultado + "\t" + "R$" + c.getPrecoLivro(resultado));
+                System.out.printf(resultado + "\t" + "R$%.2f %n", c.getPrecoLivro(resultado));
                 System.out.print("\nDigite 2 para obter mais informações sobre ele ou 0 para retornar ao menu: ");
               }
               fica_no_loop = s.nextLine();
@@ -82,24 +80,45 @@ public class App //App == Boundary
                 if(c.getDisponibilidadeLivro(resultado))
                 {
                   System.out.println("Para comprar o livro, aperte 2");
-                  Integer escolhe_add = s.nextInt();
+                  int escolhe_add = s.nextInt(); s.nextLine();
+
+                  System.out.print("Digite a quantidade que deseja adicionar: ");
+                  int num_livros = s.nextInt(); s.nextLine();
                   if(escolhe_add == 2)
                   {
-                    //System.out.println()
-                    
+                    c.realizaCompra(resultado, num_livros);
+                    c.sleep();
+                    break;
                   }
-                  
+                  else if(escolhe_add == 3)
+                  {
+                    c.addNoCarrinho(resultado, num_livros);
+                    c.sleep();
+                    break;
+                  }
                 }
                 else
                 {
                   System.out.println("Livro indisponível. Para reservá-lo, digite 5");
-                }
-                
+                  System.out.print("Digite a quantidade que deseja adicionar: ");
+                  int num_livros = s.nextInt(); s.nextLine();
+                  // Adiciona na reserva...
+                  c.sleep();
+                  break;
+                }       
               }
             }
             break;
           }
           
+          case 2:
+          {
+            c.showCatalogo();
+            System.out.println("\nAperte Enter para voltar ao Menu");
+            s.nextLine();
+            break;
+          }
+
           default:
           {
             System.out.println("\nEscolha inválida!\n");
