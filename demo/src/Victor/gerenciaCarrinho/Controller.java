@@ -1,78 +1,109 @@
+import java.util.LinkedList;
+import java.util.Arrays;
+import java.util.Map;
+
 public class Controller {
-  private String cliente; // meio burrice mas funciona
-  private Clientes clientes;
+  private String nome_cliente; 
   private Catalogo catalogo;
+  private Cliente[] clientes;
+  private int num_clientes;
 
-  public Controller(){
+  public Controller(){ // controller com o teste
     this("Ronaldo", 
-         new Clientes(
-           new Cliente[] { 
-             new Cliente("Ronaldo", "123", "plsgq@example.com" , "senha", new String[] { "Livro 1| id: 1"})}), 
-         new Catalogo(2, 2, new String[] { "Categoria 1", "Categoria 2" }, 
-                      new Livro[] { 
-                        new Livro(1, "Livro 1", 10.0f, "Autor 1", "Categoria 1"), new Livro(2, "Livro 2", 20.0f, "Autor 2", "Categoria 2")}));
+         new Catalogo(new LinkedList<Livro>(Arrays.asList(
+           new Livro(1, "Livro 1", 10.0f, "Autor 1", "Categoria 1"), 
+           new Livro(2, "Livro 2", 20.0f, "Autor 2", "Categoria 2")))),new Cliente[] {
+           new Cliente("Ronaldo", "123", "plsgq@example.com", "senha", new LinkedList(), new LinkedList())}, 1);
   }
 
-  public Controller(String cliente, Clientes clientes, Catalogo catalogo){
-    this.cliente = cliente;
-    this.clientes = clientes;
-    this.catalogo = catalogo;
-  }
-
-
-  public boolean validaAcesso(String nome, String senha){
-    if (clientes.ValidaAcesso(nome, senha)){
-      this.cliente = nome;
-      return true;
-    } else {
-      return false;
-    }
-  }
   
-  public String[] buscaTodosLivros(){
-    return catalogo.buscaTodosLivros();
+
+  public Controller(String nome_cliente, Catalogo catalogo, Cliente[] clientes, int num_clientes){
+    this.nome_cliente = nome_cliente;
+    this.catalogo = catalogo;
+    this.clientes = clientes;
+    this.num_clientes = num_clientes;
   }
 
+  
+  public Cliente acessaCliente(String nome) {
+    for (int i = 0; i < num_clientes; i++) {
+      if (clientes[i].getNome().equals(nome)) {
+        return clientes[i];
+      }
+    }
+    return null;
+  }
+
+  public String buscaCliente(String username) {
+    for (int i = 0; i < num_clientes; i++) {
+      if (clientes[i].nome == username) {
+        return clientes[i].nome;
+      }
+    }
+    return "";
+  }
+
+  public boolean validaAcesso(String username, String senha) {
+    for (int i = 0; i < num_clientes; i++) {
+      if (clientes[i].nome == username) {
+        if (clientes[i].ValidaAcesso(senha)){
+          this.nome_cliente = username;
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+
+  // mostra o catalogo
+  public void buscaTodosLivros(){
+    catalogo.showCatalogo();
+  }
+
+  // ver carrinho simplificado 
   public String[] verCarrinho(){
-    if (cliente == null){
+    if (nome_cliente == null){
       return new String[0];
     } else{
-      return clientes.acessaCliente(cliente).getCarrinho();
+      return acessaCliente(nome_cliente).getCarrinho();
     }
   }
 
-  public boolean adicionarNoCarrinho(String livro){
-    String[] tudo = buscaTodosLivros();
-    for (int i = 0; i < tudo.length; i++){
-      String[] partes = tudo[i].split("\\|");  //maracutaia para adicionar pelo nome porque depende da interface grafica
-      for (int j = 0; j < partes.length; j++) {
-        partes[j] = partes[j].trim();
-      }
-      String[] separa = new String[3];
-      separa[0] = partes[0];
-      separa[1] = partes[1].split(":")[1].trim();
-      separa[2] = partes[2].split(":")[1].trim();
-      if (separa[0].equals(livro)){
-        return clientes.acessaCliente(cliente).adicionarNoCarrinho(separa[0], Integer.parseInt(separa[1]));
-      }
+  // adiciona item ao carrinho
+  public boolean adicionarNoCarrinho(int id, int quant){
+    if (catalogo.buscaIDlivro(id) != null){
+      return acessaCliente(nome_cliente).adicionarNoCarrinho(catalogo.buscaIDlivro(id), quant);
     }
     return false;
   }
 
-  public boolean removerDoCarrinho(String livro){
-    String[] tudo = verCarrinho();
-    for (int i = 0; i < tudo.length; i++){
-      String[] partes = tudo[i].split("\\|"); //maracutaia para remover pelo id porque depende da interface grafica
-      for (int j = 0; j < partes.length; j++) {
-          partes[j] = partes[j].trim();
-      }
-      String[] separa = new String[2];
-      separa[0] = partes[0];
-      separa[1] = partes[1].split(":")[1].trim();
-      if (separa[0].equals(livro)){
-        return clientes.acessaCliente(cliente).removerDoCarrinho(Integer.parseInt(separa[1]));
-      }
+  // remove completamente o carrinho
+  public boolean removerDoCarrinho(int id){
+    if (catalogo.buscaIDlivro(id) != null){
+      return acessaCliente(nome_cliente).removerDoCarrinho(catalogo.buscaIDlivro(id));
     }
     return false;
+  }
+
+  // edita a quantidade no carrinho
+  public boolean editarCarrinho(int id, int quant){
+    if (catalogo.buscaIDlivro(id) != null){
+      return acessaCliente(nome_cliente).editarCarrinho(catalogo.buscaIDlivro(id), quant);
+    }
+    return false;
+  }
+
+  // compra tudo do carrinho (não testado manualmente)
+  public void comprarDoCarrinho(){
+    LinkedList<Map<Livro, Integer>> carrinho = acessaCliente(nome_cliente).getListaCarrinho();
+    for (Map<Livro, Integer> item : carrinho) {
+      for (Map.Entry<Livro, Integer> entry : item.entrySet()) {
+        Livro livro = entry.getKey();
+        Integer quantidade = entry.getValue();
+        acessaCliente(nome_cliente).realizaCompra(livro, quantidade);
+      }
+    }
   }
 }

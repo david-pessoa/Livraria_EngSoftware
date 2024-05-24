@@ -1,53 +1,58 @@
-public class Controller {
-  private Fornecedoras fornecedoras;
-  private String nome; // meio burrice mas funciona
+import java.util.LinkedList;
 
-  // public Controller(){
-  //   this.fornecedoras = new Fornecedoras(new Fornecedora[] {new Fornecedora("Fornecedora 1", "123456789", "abc@mail.com", "senha", new Produtos[] { 
-  //       new Produtos(new Livro(1, "Livro 1", 10.0f, "Autor 1", "Categoria 1"), 10), 
-  //       new Produtos(new Livro(2, "Livro 2", 20.0f, "Autor 2", "Categoria 2"), 5) },"123.456.789-00"), 
-  //     new Fornecedora("Fornecedora 2", "987654321", "def@mail.com", "senha", new Produtos[] { 
-  //       new Produtos(new Livro(3, "Livro 3", 30.0f, "Autor 3", "Categoria 3"),20), }, "987.654.321-00"),
-  //     new Fornecedora("Fornecedora 3", "456789123", "ghi@mail.com", "senha", new Produtos[]{
-  //       new Produtos(new Livro(4, "Livro 4", 40.0f, "Autor 4", "Categoria 1"), 15), 
-  //       new Produtos(new Livro(5, "Livro 5", 50.0f, "Autor 5" , "Categoria 2"), 12), 
-  //       new Produtos(new Livro(6, "Livro 6", 60.0f, "Autor 1", "Categoria 3"),8),
-  //       new Produtos(new Livro(7, "Livro 7", 100.0f, "Autor 2" , "Categoria 3"), 20),
-  //       new Produtos(new Livro(8, "Livro 8", 10.0f, "Autor 5" , "Categoria 4"), 9)},"987.654.123-00")} 
-  //   );
-  // }
+public class Controller {
+  private String nome_fornecedora;
+  private Fornecedora[] lista_fornecedoras;
+  private int num_fornecedoras;
+  private static final int MAX_FORNECEDORAS = 10;
 
   public Controller(){
-    this.fornecedoras = new Fornecedoras(new Fornecedora[] {new Fornecedora()});
-    this.nome = "";
+    this.lista_fornecedoras = new Fornecedora[MAX_FORNECEDORAS];
+    this.num_fornecedoras = 0;
+    this.nome_fornecedora = "";
   }
 
-  public boolean adicionaFornecedora(String nome, String CNPJ, String email, String senha, Produtos[] produtos, String dados_bancarios){
-    return fornecedoras.adicionaFornecedora(nome, CNPJ, email, senha, produtos, dados_bancarios);
-  }
-
-  public boolean validaAcesso(String nome, String senha){
-    if (fornecedoras.ValidaAcesso(nome, senha)){
-      this.nome = nome;
-      return true;
-    } else {
-      return false;
+  public boolean validaAcesso(String nome, String senha) {
+    for (int i = 0; i < num_fornecedoras; i++) {
+      if (lista_fornecedoras[i].nome.equals(nome)) {
+        if (lista_fornecedoras[i].ValidaAcesso(senha)){
+          this.nome_fornecedora = nome;
+          return true;
+        }
+      }
     }
+    return false;
   }
 
-  public void setNome(String nome){
-    this.nome = nome;
+  public Fornecedora buscaFornecedora(String nome) {
+    for (int i = 0; i < num_fornecedoras; i++) {
+      if (lista_fornecedoras[i].nome.equals(nome)) {
+        return lista_fornecedoras[i];
+      }
+    }
+    return null;
+  }
+
+  public boolean adicionaFornecedora(String nome, String CNPJ, String email, String senha,LinkedList<Produtos> produtos, String dados_bancarios){
+      lista_fornecedoras[num_fornecedoras] = new Fornecedora(nome, CNPJ, email, senha, produtos, dados_bancarios);
+    num_fornecedoras++;
+    return true;
+  }
+
+  public void setNome(String nome_fornecedora){
+    this.nome_fornecedora = nome_fornecedora;
   }
 
   public String listaEstoque(){
-    return fornecedoras.buscaCliente(nome).listaEstoque();
+    return buscaFornecedora(nome_fornecedora).listaEstoque();
   }
 
   public boolean addNoEstoque(String nome_livro, int quant, String data_envio, String data_recebimento){
-    return fornecedoras.buscaCliente(nome).addNoEstoque(nome_livro, quant, data_envio, data_recebimento);
+    return buscaFornecedora(nome_fornecedora).addNoEstoque(nome_livro, quant, data_envio, data_recebimento);
   }
 
+  
   public boolean addNoEstoque(int id,String nome_livro, float preco, String autor, String categoria, int quant, String data_envio, String data_recebimento){
-    return fornecedoras.buscaCliente(nome).addNoEstoque(id,nome_livro, preco, autor, categoria, quant,data_envio, data_recebimento);
+    return buscaFornecedora(nome_fornecedora).addNoEstoque(id,nome_livro, preco, autor, categoria, quant,data_envio, data_recebimento);
   }
 }

@@ -1,5 +1,4 @@
 public class Livro {
-    // acho que precisa de um atributo para quantidade de livros ja que uma livraria tem mais de um do mesmo livro
     private int id;
     private String nome;
     private float preco;
@@ -28,6 +27,10 @@ public class Livro {
 
     public int getId() {
         return id;
+    }
+
+    public String getCategoria(){
+        return categoria;
     }
 
 }

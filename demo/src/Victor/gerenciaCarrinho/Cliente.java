@@ -1,51 +1,85 @@
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.HashMap;
+
 public class Cliente {
   protected String nome;
   private String CPF;
   private String email;
   private String senha;
-  private String[] carrinho;
+  private LinkedList<Map<Livro, Integer>> carrinho; // carrinho tem que ser assim por causa da quantidade de itens
+  private LinkedList<Compra> pedidos;
 
   public Cliente() {
-    this("", "", "", "", new String[] { "" });
+    this("", "", "", "", new LinkedList<Map<Livro, Integer>>(), new LinkedList<Compra>());
   }
 
-  public Cliente(String nome, String CPF, String email, String senha, String[] carrinho) {
+  public Cliente(String nome, String CPF, String email, String senha, LinkedList<Map<Livro, Integer>> carrinho, LinkedList<Compra> pedidos) {
     this.nome = nome;
     this.CPF = CPF;
     this.email = email;
     this.senha = senha;
     this.carrinho = carrinho;
+    this.pedidos = pedidos;
   }
 
-  public boolean adicionarNoCarrinho(String livro, int id) {
-    String[] aux = new String[carrinho.length + 1];
-    for (int i = 0; i < carrinho.length; i++) {
-      aux[i] = carrinho[i];
+  public boolean adicionarNoCarrinho(Livro livro, int quant) {
+    if (quant <= 0) {
+      return false;
     }
-    aux[carrinho.length] = livro + "| id: "+ id;
-    this.carrinho = aux;
+    Map<Livro, Integer> item = new HashMap<>();
+    item.put(livro, quant);
+    carrinho.add(item);
     return true;
   }
 
-  public boolean removerDoCarrinho(int id) {
-    String[] aux = new String[carrinho.length - 1];
-    int j = 0;
-    for (int i = 0; i < carrinho.length; i++) {
-      String[] partes = carrinho[i].split("\\|"); //maracutaia para remover pelo id porque depende da interface grafica
-      for (int f = 0; f < partes.length; f++) {
-          partes[f] = partes[f].trim();
-      }
-      String[] separa = new String[2];
-      separa[0] = partes[0];
-      separa[1] = partes[1].split(":")[1].trim();
-      if (Integer.parseInt(separa[1])!= id) {
-        aux[j++] = carrinho[i];
+  public boolean removerDoCarrinho(Livro livro) {
+    boolean flag = false;
+    if (livro == null) {
+      return false;
+    }
+    for (Map<Livro, Integer> item : carrinho) {
+      if (item.containsKey(livro)) {
+        carrinho.remove(item);
+        flag = true;
+        break;
       }
     }
-    this.carrinho = aux;
-    return true;
+    return flag;
   }
 
+  public boolean editarCarrinho(Livro livro, int quant) {
+    if (livro == null || quant == 0) {
+      return false;
+    }
+    for (Map<Livro, Integer> item : carrinho) {
+      if (item.containsKey(livro)) {
+        item.put(livro, quant);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public void realizaCompra(Livro livro, int qtde)
+    {
+      Compra compra = new Compra(livro, qtde);
+      pedidos.addFirst(compra);
+    }
+
+  public String[] getCarrinho() {
+    String[] resposta = new String[carrinho.size()];
+    int i = 0;
+    for (Map<Livro, Integer> item : carrinho) {
+      for (Map.Entry<Livro, Integer> entry : item.entrySet()) {
+        Livro livro = entry.getKey();
+        Integer quantidade = entry.getValue();
+        resposta[i] = "nome: " + livro.getNome() + " | quant: " + quantidade;
+      }
+      i++;
+    }
+    return resposta;
+  }
 
   public String getNome() {
     return nome;
@@ -63,7 +97,7 @@ public class Cliente {
     return senha;
   }
 
-  public String[] getCarrinho() {
+  public LinkedList<Map<Livro, Integer>> getListaCarrinho() {
     return carrinho;
   }
 
