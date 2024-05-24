@@ -39,6 +39,7 @@ public class App //App == Boundary
         System.out.println("3) Acessar meu carrinho");
         System.out.println("4) Acessar meus pedidos");
         System.out.println("5) Acessar reservas feitas");
+        System.out.println("6) Sair");
         System.out.print("Escolha uma opção: ");
         choice = s.nextInt(); s.nextLine();
 
@@ -137,6 +138,11 @@ public class App //App == Boundary
             break;
           }
 
+          case 6: // 6) Sair
+          {
+            System.exit(0);
+          }
+
           default:
           {
             System.out.println("\nEscolha inválida!\n");
@@ -150,6 +156,6 @@ public class App //App == Boundary
 
 
 
-
+      s.close();
     }
 }
