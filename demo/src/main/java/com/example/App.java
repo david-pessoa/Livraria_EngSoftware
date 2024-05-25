@@ -7,7 +7,6 @@ public class App //App == Boundary
     {
       Scanner s = new Scanner(System.in);
       Controller c = new Controller(); //Inicia controller
-      c.setUpCadastro(); //Adquire informações de cadastro dos clientes
       boolean acesso_valido = false; //Controla o acessp
       String username = "", senha;
 
@@ -27,7 +26,6 @@ public class App //App == Boundary
       
       int choice; //Escolha do menu
       System.out.println("\nBem vindo, " + username + "!\n");
-      c.setUpCatalogo();
 
       while(acesso_valido == true)
       {
@@ -89,11 +87,10 @@ public class App //App == Boundary
                     System.out.println("Para comprar o livro, aperte 2");
                     int escolhe_add = s.nextInt(); s.nextLine(); //Cliente escolhe se deseja comprar livro ou adicionar ao carrinho
 
-                    int num_livros = s.nextInt(); s.nextLine();
-
                     if(escolhe_add == 2) //Compra o livro
                     {
                       System.out.print("Digite a quantidade que deseja adicionar: ");
+                      int num_livros = s.nextInt(); s.nextLine();
                       c.realizaCompra(resultado, num_livros);
                       c.sleep();
                       break;
@@ -101,6 +98,7 @@ public class App //App == Boundary
                     else if(escolhe_add == 3) //Adiciona ao carrinho
                     {
                       System.out.print("Digite a quantidade que deseja adicionar: ");
+                      int num_livros = s.nextInt(); s.nextLine();
                       c.addNoCarrinho(resultado, num_livros);
                       c.sleep();
                       break;
@@ -119,7 +117,7 @@ public class App //App == Boundary
                   {
                     System.out.println("Livro indisponível. Para reservá-lo, digite 5");
                     System.out.print("Digite a quantidade que deseja adicionar: ");
-                    int num_livros = s.nextInt(); s.nextLine();
+                    //int num_livros = s.nextInt(); s.nextLine();
                     // Adiciona na reserva...
                     c.sleep();
                     break;

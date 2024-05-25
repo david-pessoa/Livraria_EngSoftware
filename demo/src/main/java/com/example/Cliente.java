@@ -1,4 +1,7 @@
 package com.example;
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.LinkedList;
 
 public class Cliente//Classe para representar os clientes da loja
@@ -9,6 +12,7 @@ public class Cliente//Classe para representar os clientes da loja
     private String senha;
     private LinkedList<ItemCarrinho> carrinho = new LinkedList<>(); //Carrinho do cliente
     private LinkedList<Compra> pedidos = new LinkedList<>(); //Lista de pedidos realizados pelo cliente
+    private static final int MAX_CLIENTES = 10;
 
     public Cliente() //Construtor sem parâmetros
     {
@@ -131,4 +135,49 @@ public class Cliente//Classe para representar os clientes da loja
       else
         return false;
     }
+
+  //------------------------------------------------- SetUpCadastro() (Lê arquivo binári) -------------------------------------------------------------
+    public Cliente[] setUpCadastro() //Extrai informações dos livros contidas no arquivo binário livros.bin
+    {   
+        try {
+            Cliente[] lista_clientes = new Cliente[MAX_CLIENTES]; //Cria vetor de clientes
+            int num_clientes = 0;
+            // Abrir o arquivo binário para leitura
+            FileInputStream fileInput = new FileInputStream("./demo/src/main/java/com/example/usuarios.bin"); //OBS: Mude o caminho se necessário
+            DataInputStream dataInput = new DataInputStream(fileInput);
+            
+            // Ler os dados do arquivo binário e criar objetos Livro
+            while (dataInput.available() > 0) {
+                dataInput.readUTF();
+                String Nome = dataInput.readUTF();
+
+                dataInput.readUTF();
+                String CPF = dataInput.readUTF();
+
+                dataInput.readUTF();
+                String email = dataInput.readUTF();
+
+                dataInput.readUTF();
+                String senha = dataInput.readUTF();
+                //Lê disponibilidade
+                
+                // Criar objeto Livro e adicionar à linked list
+                Cliente cliente = new Cliente(Nome, CPF, email, senha);
+                lista_clientes[num_clientes] = cliente;
+                num_clientes++;
+                
+            }
+            
+            // Fechar o fluxo de entrada
+            dataInput.close();
+            fileInput.close();
+            return lista_clientes;
+        } 
+        catch (IOException e) 
+        {
+            System.out.println("Ocorreu um erro ao ler o arquivo binário usuarios.bin: " + e.getMessage());
+            return null;
+        }
+    }
+
 }

@@ -1,6 +1,4 @@
 package com.example;
-import java.io.*;
-import java.util.LinkedList;
 
 public class Controller 
 {
@@ -8,93 +6,14 @@ public class Controller
     private Cliente cliente_logado;
     private Catalogo catalogo;
     private Cliente[] lista_clientes;
-    private static final int MAX_CLIENTES = 100;
-    private int num_clientes;
 
     //------------------------------------------------- Construtor -------------------------------------------------------------
 
-    public Controller() //Construtor inicia o vetor de clientes (talvez isso seja armazenado no arquivo .bin)
-    {
-        this.lista_clientes = new Cliente[MAX_CLIENTES];
-        this.num_clientes = 0;
-    }
-
-    //------------------------------------------------- SetUps (Lê arquivos binário) -------------------------------------------------------------
-
-    public void setUpCadastro() //Extrai informações dos livros contidas no arquivo binário livros.bin
-    {   
-        try {
-            // Abrir o arquivo binário para leitura
-            FileInputStream fileInput = new FileInputStream("./demo/src/main/java/com/example/usuarios.bin"); //OBS: Mude o caminho se necessário
-            DataInputStream dataInput = new DataInputStream(fileInput);
-            
-            // Ler os dados do arquivo binário e criar objetos Livro
-            while (dataInput.available() > 0) {
-                dataInput.readUTF();
-                String Nome = dataInput.readUTF();
-
-                dataInput.readUTF();
-                String CPF = dataInput.readUTF();
-
-                dataInput.readUTF();
-                String email = dataInput.readUTF();
-
-                dataInput.readUTF();
-                String senha = dataInput.readUTF();
-                //Lê disponibilidade
-                System.out.println(Nome + ", "+ CPF + ", "+ email + ", "+ senha);
-                
-                // Criar objeto Livro e adicionar à linked list
-                Cliente cliente = new Cliente(Nome, CPF, email, senha);
-                this.lista_clientes[this.num_clientes] = cliente;
-                this.num_clientes++;
-                
-            }
-            
-            // Fechar o fluxo de entrada
-            dataInput.close();
-            fileInput.close();
-
-        } 
-        catch (IOException e) 
-        {
-            System.out.println("Ocorreu um erro ao ler o arquivo binário usuarios.bin: " + e.getMessage());
-        }
-    }
-    
-
-    public void setUpCatalogo() //Extrai informações dos livros contidas no arquivo binário livros.bin
-    {
-        LinkedList<Livro> listaLivros = new LinkedList<>();
-        
-        try {
-            // Abrir o arquivo binário para leitura
-            FileInputStream fileInput = new FileInputStream("./demo/src/main/java/com/example/livros.bin"); //OBS: Mude o caminho se necessário
-            DataInputStream dataInput = new DataInputStream(fileInput);
-            
-            // Ler os dados do arquivo binário e criar objetos Livro
-            while (dataInput.available() > 0) {
-                String titulo = dataInput.readUTF();
-                float preco = dataInput.readFloat();
-                String autor = dataInput.readUTF();
-                String categoria = dataInput.readUTF();
-                //Lê disponibilidade
-                
-                // Criar objeto Livro e adicionar à linked list
-                Livro livro = new Livro(titulo, preco, autor, categoria);
-                listaLivros.add(livro);
-            }
-            
-            // Fechar o fluxo de entrada
-            dataInput.close();
-            fileInput.close();
-            
-            this.catalogo = new Catalogo(listaLivros);
-        } 
-        catch (IOException e) 
-        {
-            System.out.println("Ocorreu um erro ao ler o arquivo binário livros.bin: " + e.getMessage());
-        }
+    public Controller() //Construtor popula a lista de clientes e o catálogo
+    {   this.cliente_logado = new Cliente();
+        this.catalogo = new Catalogo();
+        this.lista_clientes = cliente_logado.setUpCadastro();
+        this.catalogo = catalogo.setUpCatalogo();
     }
 
     //------------------------------------------------- Métodos relativos a classe Cliente -------------------------------------------------------------
