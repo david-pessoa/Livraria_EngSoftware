@@ -13,7 +13,6 @@ public class Controller
     {   this.cliente_logado = new Cliente();
         this.catalogo = new Catalogo();
         this.lista_clientes = cliente_logado.setUpCadastro();
-        this.catalogo = catalogo.setUpCatalogo();
     }
 
     //------------------------------------------------- Métodos relativos a classe Cliente -------------------------------------------------------------

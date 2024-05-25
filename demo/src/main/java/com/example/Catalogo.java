@@ -10,14 +10,9 @@ public class Catalogo
     private LinkedList<Livro> livros_do_catalogo;
   
     //Construtor com parâmetros
-    public Catalogo(LinkedList<Livro> livros)
-    {
-      this.livros_do_catalogo = livros;
-    }
-
     public Catalogo()
     {
-      this(null);
+      this.livros_do_catalogo = this.setUpCatalogo();
     }
 
     //Procura um livro no catálogo pelo nome do livro
@@ -75,7 +70,7 @@ public class Catalogo
 
         //------------------------------------------------- SetUpCatalogo() (Lê arquivo binário) -------------------------------------------------------------
     
-    public Catalogo setUpCatalogo() //Extrai informações dos livros contidas no arquivo binário livros.bin
+    public LinkedList<Livro> setUpCatalogo() //Extrai informações dos livros contidas no arquivo binário livros.bin
     {
         LinkedList<Livro> listaLivros = new LinkedList<>();
         
@@ -101,8 +96,7 @@ public class Catalogo
             dataInput.close();
             fileInput.close();
             
-            Catalogo catalogo = new Catalogo(listaLivros);
-            return catalogo;
+            return listaLivros;
         } 
         catch (IOException e) 
         {
