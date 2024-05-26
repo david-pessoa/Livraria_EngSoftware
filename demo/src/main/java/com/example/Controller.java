@@ -12,10 +12,9 @@ public class Controller
     public Controller(boolean NaoEhTeste) //Construtor popula a lista de clientes e o catálogo
     {  
         this.catalogo = new Catalogo(NaoEhTeste); //NaoEhTeste informa se o objeto controller está sendo executado no App.java ou nos testes
+        this.cliente_logado = new Cliente();
         this.lista_clientes = cliente_logado.setUpCadastro(NaoEhTeste);
-        if(NaoEhTeste)
-            this.cliente_logado = new Cliente();
-        else
+        if(!NaoEhTeste)
             this.cliente_logado = lista_clientes[0];
     }
 

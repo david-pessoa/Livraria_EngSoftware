@@ -7,7 +7,7 @@ public class App //App == Boundary
     {
       Scanner s = new Scanner(System.in);
       Controller c = new Controller(true); //Inicia controller
-      boolean acesso_valido = false; //Controla o acessp
+      boolean acesso_valido = false; //Controla o acesso
       String username = "", senha;
 
       while(!acesso_valido)

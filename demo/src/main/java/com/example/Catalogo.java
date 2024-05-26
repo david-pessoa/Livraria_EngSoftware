@@ -49,15 +49,6 @@ public class Catalogo
         return livros_do_catalogo;
     }
 
-    public void showCatalogo()
-    { System.out.println("Nome: \t Autor: \t" + " Categoria: \t" + " Preço: \t" + "Disponibilidade\n");
-      for(Livro l : livros_do_catalogo)
-      {
-        System.out.printf(l.getNome() + "\t" + l.getAutor() + "\t" + l.getCategoria() + "\tR$%.2f", l.getPreco()); //Pesquisar como deixar alinhado
-        System.out.println("\n");
-      }
-    }
-
     public Livro buscaIDlivro(int id) //testar
     {
       for(Livro l : this.livros_do_catalogo)
@@ -111,4 +102,51 @@ public class Catalogo
         }
     }
 
+    public void showCatalogo() //Exibe o catálogo numa tabela
+    {
+      System.out.println("\n\t\t\t\t\t\t\tCatálogo");
+      int[] larguraColunas = {40, 12, 40, 20, 10}; //Largura de cada coluna 
+      String[] cabecalho = {"Nome", "Preço", "Autor", "Categoria", "Disponibilidade"}; //Cabeçalho
+        imprimirLinha(cabecalho, larguraColunas); //Imprime cabeçalho
+        imprimirLinhaSeparadora(larguraColunas); //Imprime linha separadora
+
+        for (Livro livro : livros_do_catalogo) //Imprime as informações de cada livro numa linha
+        {
+          String disponibilidade;
+          if(livro.getDisponibilidade())
+            disponibilidade = "Disponível";
+          else
+            disponibilidade = "Indisponível";
+
+            String[] linha = {
+                livro.getNome(),
+                String.valueOf(livro.getPreco()),
+                livro.getAutor(),
+                livro.getCategoria(),
+                disponibilidade
+            };
+            imprimirLinha(linha, larguraColunas);
+        }
+    }
+
+
+  private static void imprimirLinhaSeparadora(int[] larguraColunas) //Função para imprimir linha do cabeçalho
+  {
+    for (int largura : larguraColunas) {
+        for (int i = 0; i < largura; i++) {
+            System.out.print("-");
+        }
+    }
+    System.out.print("------\n");
+
   }
+
+  private static void imprimirLinha(String[] linha, int[] larguraColunas) //Imprime as linhas da tabela
+  {
+    for (int i = 0; i < linha.length; i++) 
+    {
+        System.out.printf("%-" + larguraColunas[i] + "s", linha[i]);
+    }
+    System.out.println();
+  }
+}
