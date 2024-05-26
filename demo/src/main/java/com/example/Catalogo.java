@@ -10,15 +10,15 @@ public class Catalogo
     private LinkedList<Livro> livros_do_catalogo;
   
     //Construtor com parâmetros
-    public Catalogo()
+    public Catalogo(boolean NaoEhTeste)
     {
-      this.livros_do_catalogo = this.setUpCatalogo(true);
+      this.livros_do_catalogo = this.setUpCatalogo(NaoEhTeste);
     }
 
     //Procura um livro no catálogo pelo nome do livro
     public Livro buscaLivroNome(String nome)
     {
-      for(Livro l : livros_do_catalogo)
+      for(Livro l : this.livros_do_catalogo)
       {
         String temp = l.getNome();
         temp = temp.toLowerCase();
@@ -32,9 +32,9 @@ public class Catalogo
     //Procura um livro no catálogo pelo nome do autor
     public Livro buscaLivroAutor(String autor)
     {
-      for(Livro l : livros_do_catalogo)
+      for(Livro l : this.livros_do_catalogo)
       {
-        String temp = l.getNome();
+        String temp = l.getAutor();
         temp = temp.toLowerCase();
         autor = autor.toLowerCase();
         if (temp.equals(autor))
@@ -60,7 +60,7 @@ public class Catalogo
 
     public Livro buscaIDlivro(int id) //testar
     {
-      for(Livro l : livros_do_catalogo)
+      for(Livro l : this.livros_do_catalogo)
       {
         if(l.getId() == id)
           return l;
@@ -78,9 +78,10 @@ public class Catalogo
             // Abrir o arquivo binário para leitura
             String caminho;
             if(NaoEhTeste)
-              caminho = "./demo/src/main/java/com/example/livros.bin";
+              caminho = "./demo/src/main/java/com/example/livros.bin"; //Caminho para execução normal do programa
             else
-              caminho = "../demo/src/main/java/com/example/livros.bin";
+              caminho = "../demo/src/main/java/com/example/livros.bin"; //Caminho para execução de testes do programa
+
             FileInputStream fileInput = new FileInputStream(caminho); //OBS: Mude o caminho se necessário
             DataInputStream dataInput = new DataInputStream(fileInput);
             

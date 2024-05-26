@@ -9,10 +9,14 @@ public class Controller
 
     //------------------------------------------------- Construtor -------------------------------------------------------------
 
-    public Controller() //Construtor popula a lista de clientes e o catálogo
-    {   this.cliente_logado = new Cliente();
-        this.catalogo = new Catalogo();
-        this.lista_clientes = cliente_logado.setUpCadastro(true);
+    public Controller(boolean NaoEhTeste) //Construtor popula a lista de clientes e o catálogo
+    {  
+        this.catalogo = new Catalogo(NaoEhTeste); //NaoEhTeste informa se o objeto controller está sendo executado no App.java ou nos testes
+        this.lista_clientes = cliente_logado.setUpCadastro(NaoEhTeste);
+        if(NaoEhTeste)
+            this.cliente_logado = new Cliente();
+        else
+            this.cliente_logado = lista_clientes[0];
     }
 
     //------------------------------------------------- Métodos relativos a classe Cliente -------------------------------------------------------------
@@ -104,7 +108,10 @@ public class Controller
             System.out.println("Autor " + livro.getAutor());
             System.out.println("Categoria: " + livro.getCategoria());
             System.out.printf("Preço: R$%.2f %n", livro.getPreco());
-            System.out.println("Disponibilidade: " + livro.getDisponibilidade());
+            if(livro.getDisponibilidade())
+                System.out.println("Disponibilidade: Disponível");
+            else
+            System.out.println("Disponibilidade: Indisponível");
         }
     }
 
@@ -161,6 +168,11 @@ public class Controller
     }
 
     public void clearScreen() {System.out.print("\033[H\033[2J");} //Limpar a tela quando retornar ao menu
+
+    //-------- Apenas para usar na classe ControllerTest---------
+    public Cliente getCliente_logado() {return cliente_logado;}
+    public Cliente[] getLista_clientes() {return lista_clientes;}
+    public Catalogo getCatalogo() {return catalogo;}
 
 
 }

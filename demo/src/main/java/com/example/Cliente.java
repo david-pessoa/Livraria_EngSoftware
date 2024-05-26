@@ -12,7 +12,7 @@ public class Cliente//Classe para representar os clientes da loja
     private String senha;
     private LinkedList<ItemCarrinho> carrinho = new LinkedList<>(); //Carrinho do cliente
     private LinkedList<Compra> pedidos = new LinkedList<>(); //Lista de pedidos realizados pelo cliente
-    private static final int MAX_CLIENTES = 10;
+    private static final int TOTAL_CLIENTES = 2;
 
     public Cliente() //Construtor sem parâmetros
     {
@@ -141,14 +141,15 @@ public class Cliente//Classe para representar os clientes da loja
     public Cliente[] setUpCadastro(boolean NaoEhTeste) //Extrai informações dos livros contidas no arquivo binário livros.bin
     {   
         try {
-            Cliente[] lista_clientes = new Cliente[MAX_CLIENTES]; //Cria vetor de clientes
+            Cliente[] lista_clientes = new Cliente[TOTAL_CLIENTES]; //Cria vetor de clientes
             int num_clientes = 0;
             // Abrir o arquivo binário para leitura
             String caminho;
             if(NaoEhTeste)
-              caminho = "./demo/src/main/java/com/example/usuarios.bin";
+              caminho = "./demo/src/main/java/com/example/usuarios.bin"; //Caminho para execução normal do programa
             else
-              caminho = "../demo/src/main/java/com/example/usuarios.bin";
+              caminho = "../demo/src/main/java/com/example/usuarios.bin"; //Caminho para execução de testes do programa
+
             FileInputStream fileInput = new FileInputStream(caminho); //OBS: Mude o caminho se necessário
             DataInputStream dataInput = new DataInputStream(fileInput);
             

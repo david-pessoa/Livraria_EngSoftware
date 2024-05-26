@@ -6,11 +6,11 @@ public class App //App == Boundary
     public static void main( String[] args )
     {
       Scanner s = new Scanner(System.in);
-      Controller c = new Controller(); //Inicia controller
+      Controller c = new Controller(true); //Inicia controller
       boolean acesso_valido = false; //Controla o acessp
       String username = "", senha;
 
-      while(acesso_valido == false)
+      while(!acesso_valido)
       {
         System.out.println("\n\t\t Livraria.com\n");
 
@@ -20,7 +20,7 @@ public class App //App == Boundary
         System.out.print("Insira sua senha: ");
         senha = s.nextLine();
         acesso_valido = c.validaAcesso(username, senha);
-        if(acesso_valido == false)
+        if(!acesso_valido)
           System.out.println("\nNome de usuário ou senha incorretos!\n");
       }
       
