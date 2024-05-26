@@ -15,7 +15,7 @@ public class ClienteTest
     @Before
     public void setUpCadastro() //Consertar setUpCadastro() dá erro...
     {   
-        Cliente[] resultado = cli_teste.setUpCadastro();
+        Cliente[] resultado = cli_teste.setUpCadastro(false);
         cli_teste = resultado[0];
         Assert.assertEquals(resultado[0].getNome(), "João"); //Verifica nome do primeiro usuário na lista
         Assert.assertEquals(resultado[1].getEmail(), "zezinho@gmail.com"); //Verifica email do segundo usuário na lista

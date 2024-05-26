@@ -12,7 +12,7 @@ public class Controller
     public Controller() //Construtor popula a lista de clientes e o catálogo
     {   this.cliente_logado = new Cliente();
         this.catalogo = new Catalogo();
-        this.lista_clientes = cliente_logado.setUpCadastro();
+        this.lista_clientes = cliente_logado.setUpCadastro(true);
     }
 
     //------------------------------------------------- Métodos relativos a classe Cliente -------------------------------------------------------------

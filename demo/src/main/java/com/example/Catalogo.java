@@ -80,7 +80,7 @@ public class Catalogo
             if(NaoEhTeste)
               caminho = "./demo/src/main/java/com/example/livros.bin";
             else
-              caminho = "../../../../main/java/com/example/livros.bin";
+              caminho = "../demo/src/main/java/com/example/livros.bin";
             FileInputStream fileInput = new FileInputStream(caminho); //OBS: Mude o caminho se necessário
             DataInputStream dataInput = new DataInputStream(fileInput);
             

@@ -138,13 +138,18 @@ public class Cliente//Classe para representar os clientes da loja
     }
 
   //------------------------------------------------- SetUpCadastro() (Lê arquivo binário) -------------------------------------------------------------
-    public Cliente[] setUpCadastro() //Extrai informações dos livros contidas no arquivo binário livros.bin
+    public Cliente[] setUpCadastro(boolean NaoEhTeste) //Extrai informações dos livros contidas no arquivo binário livros.bin
     {   
         try {
             Cliente[] lista_clientes = new Cliente[MAX_CLIENTES]; //Cria vetor de clientes
             int num_clientes = 0;
             // Abrir o arquivo binário para leitura
-            FileInputStream fileInput = new FileInputStream("./demo/src/main/java/com/example/usuarios.bin"); //OBS: Mude o caminho se necessário
+            String caminho;
+            if(NaoEhTeste)
+              caminho = "./demo/src/main/java/com/example/usuarios.bin";
+            else
+              caminho = "../demo/src/main/java/com/example/usuarios.bin";
+            FileInputStream fileInput = new FileInputStream(caminho); //OBS: Mude o caminho se necessário
             DataInputStream dataInput = new DataInputStream(fileInput);
             
             // Ler os dados do arquivo binário e criar objetos Livro
