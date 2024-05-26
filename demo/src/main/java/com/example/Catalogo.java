@@ -12,7 +12,7 @@ public class Catalogo
     //Construtor com parâmetros
     public Catalogo()
     {
-      this.livros_do_catalogo = this.setUpCatalogo();
+      this.livros_do_catalogo = this.setUpCatalogo(true);
     }
 
     //Procura um livro no catálogo pelo nome do livro
@@ -70,13 +70,18 @@ public class Catalogo
 
         //------------------------------------------------- SetUpCatalogo() (Lê arquivo binário) -------------------------------------------------------------
     
-    public LinkedList<Livro> setUpCatalogo() //Extrai informações dos livros contidas no arquivo binário livros.bin
+    public LinkedList<Livro> setUpCatalogo(boolean NaoEhTeste) //Extrai informações dos livros contidas no arquivo binário livros.bin
     {
         LinkedList<Livro> listaLivros = new LinkedList<>();
         
         try {
             // Abrir o arquivo binário para leitura
-            FileInputStream fileInput = new FileInputStream("./demo/src/main/java/com/example/livros.bin"); //OBS: Mude o caminho se necessário
+            String caminho;
+            if(NaoEhTeste)
+              caminho = "./demo/src/main/java/com/example/livros.bin";
+            else
+              caminho = "../../../../main/java/com/example/livros.bin";
+            FileInputStream fileInput = new FileInputStream(caminho); //OBS: Mude o caminho se necessário
             DataInputStream dataInput = new DataInputStream(fileInput);
             
             // Ler os dados do arquivo binário e criar objetos Livro

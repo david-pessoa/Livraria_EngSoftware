@@ -1,8 +1,8 @@
 package com.example;
-import static org.junit.Assert.assertTrue;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class ControllerTest 
 {
-    //Criar testes dos métodos da classe Controller
+    // Fazer testes do controller
 }

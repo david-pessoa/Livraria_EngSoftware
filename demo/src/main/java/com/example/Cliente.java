@@ -33,6 +33,7 @@ public class Cliente//Classe para representar os clientes da loja
     public String getCPF(){return CPF;}
     public String getEmail(){return email;}
     private String getSenha(){return senha;}
+    public LinkedList<Compra> getPedidos() {return pedidos;}
 
     //Setters
     public void setNome(String nome){this.nome = nome;}
@@ -136,7 +137,7 @@ public class Cliente//Classe para representar os clientes da loja
         return false;
     }
 
-  //------------------------------------------------- SetUpCadastro() (Lê arquivo binári) -------------------------------------------------------------
+  //------------------------------------------------- SetUpCadastro() (Lê arquivo binário) -------------------------------------------------------------
     public Cliente[] setUpCadastro() //Extrai informações dos livros contidas no arquivo binário livros.bin
     {   
         try {

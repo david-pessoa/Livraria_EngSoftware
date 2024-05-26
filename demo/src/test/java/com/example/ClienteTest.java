@@ -1,28 +1,33 @@
 package com.example;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.LinkedList;
+
 import org.junit.Assert;
 
 
 public class ClienteTest 
 {
     private Cliente cli_teste = new Cliente();
+    private Livro livro_teste = new Livro("LivroTeste", 99.99f, "Autor", "Categoria");
 
     @Before
-    void setUpCadastro()
-    {
+    public void setUpCadastro() //Consertar setUpCadastro() dá erro...
+    {   
         Cliente[] resultado = cli_teste.setUpCadastro();
-        Assert.assertEquals(resultado[0].getNome(), "João");
-        Assert.assertEquals(resultado[1].getEmail(), "zezinho@gmail.com");
+        cli_teste = resultado[0];
+        Assert.assertEquals(resultado[0].getNome(), "João"); //Verifica nome do primeiro usuário na lista
+        Assert.assertEquals(resultado[1].getEmail(), "zezinho@gmail.com"); //Verifica email do segundo usuário na lista
     }
 
     @Test
-    void realizaCompra()
+    public void realizaCompra() //Verifica se o nome do livro pedido e a quantidade pedida conferem
     {
-        Livro livro_teste = new Livro("LivroTeste", 99.99f, "Autor", "Categoria");
-        Compra compra_teste = new Compra(livro_teste, 2);
-        Assert.assertEquals(livro_teste, compra_teste.getItem());
-        Assert.assertEquals(2, compra_teste.getQuantidade());
+        cli_teste.realizaCompra(livro_teste, 2);
+        LinkedList<Compra> lista_pedidos = cli_teste.getPedidos();
+        Assert.assertEquals(lista_pedidos.getFirst().getItem().getNome(), livro_teste.getNome());
+        Assert.assertEquals(lista_pedidos.getFirst().getQuantidade(), 2);
     }
 
     
