@@ -91,6 +91,9 @@ public class App //App == Boundary
                     {
                       System.out.print("Digite a quantidade que deseja adicionar: ");
                       int num_livros = s.nextInt(); s.nextLine();
+
+                      //Inserir forma de pagamento da compra
+
                       c.realizaCompra(resultado, num_livros);
                       c.sleep();
                       break;
