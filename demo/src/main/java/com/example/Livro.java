@@ -19,7 +19,7 @@ public class Livro
         this.preco = preco;
         this.autor = autor;
         this.categoria = categoria;
-        this.disponivel = true;
+        this.disponivel = true; //alterar, livro disponível
     }
 
     private int geraID() //Cria ID aleatório para o livro
