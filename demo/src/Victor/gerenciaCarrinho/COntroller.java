@@ -1,6 +1,5 @@
 import java.util.LinkedList;
 import java.util.Arrays;
-import java.util.Map;
 
 public class Controller {
   private String nome_cliente; 
@@ -96,14 +95,11 @@ public class Controller {
   }
 
   // compra tudo do carrinho (não testado manualmente)
-  public void comprarDoCarrinho(){
-    LinkedList<Map<Livro, Integer>> carrinho = acessaCliente(nome_cliente).getListaCarrinho();
-    for (Map<Livro, Integer> item : carrinho) {
-      for (Map.Entry<Livro, Integer> entry : item.entrySet()) {
-        Livro livro = entry.getKey();
-        Integer quantidade = entry.getValue();
-        acessaCliente(nome_cliente).realizaCompra(livro, quantidade);
-      }
+    public void comprarDoCarrinho() {
+        Cliente cliente = acessaCliente(nome_cliente);
+        if (cliente != null) {
+            cliente.compraCarrinho();
+        }
     }
   }
 }
