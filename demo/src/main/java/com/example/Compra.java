@@ -1,7 +1,6 @@
 package com.example;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Random;
 
 public class Compra //Classe que representa um pedido feito pelo cliente
@@ -27,14 +26,14 @@ public class Compra //Classe que representa um pedido feito pelo cliente
    public Livro getItem() {return item;}
    public int getQuantidade() {return quantidade;}
    public float getValor_compra() {return valor_compra;}
-  
+
    private int geraID() //Cria um ID aleatório para o pedido
    {
       Random random = new Random();
       return random.nextInt(10000);
    }
   
-    public float calculaTotalCompra() //calcula o valor total da compra
+    public float calculaTotalCompra() //calcula o valor total da compra 
     {
       return item.getPreco() * quantidade;
     }
