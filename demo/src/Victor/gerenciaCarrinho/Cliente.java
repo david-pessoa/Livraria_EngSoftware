@@ -7,13 +7,15 @@ public class Cliente {
   private String CPF;
   private String email;
   private String senha;
-  private LinkedList<Map<Livro, Integer>> carrinho; // carrinho tem que ser assim por causa da quantidade de itens
+  private LinkedList<Map<Livro, Integer>> carrinho; // carrinho tem que ser assim por causa da quantidade de itens e não ficar feio aquela classe a mais itemCarrinho
   private LinkedList<Compra> pedidos;
 
+  // isso pode tirar
   public Cliente() {
     this("", "", "", "", new LinkedList<Map<Livro, Integer>>(), new LinkedList<Compra>());
   }
 
+  // isso pode tirar
   public Cliente(String nome, String CPF, String email, String senha, LinkedList<Map<Livro, Integer>> carrinho, LinkedList<Compra> pedidos) {
     this.nome = nome;
     this.CPF = CPF;
@@ -22,7 +24,8 @@ public class Cliente {
     this.carrinho = carrinho;
     this.pedidos = pedidos;
   }
-
+  
+  // feito pelo Victor
   public boolean adicionarNoCarrinho(Livro livro, int quant) {
     if (quant <= 0) {
       return false;
@@ -33,6 +36,7 @@ public class Cliente {
     return true;
   }
 
+  // feito pelo Victor
   public boolean removerDoCarrinho(Livro livro) {
     boolean flag = false;
     if (livro == null) {
@@ -48,6 +52,7 @@ public class Cliente {
     return flag;
   }
 
+  // caso precise (pra mim tira)
   public boolean editarCarrinho(Livro livro, int quant) {
     if (livro == null || quant == 0) {
       return false;
@@ -61,12 +66,27 @@ public class Cliente {
     return false;
   }
 
+  // feito pelo victor que comprar tudo do carrinho
+  public void compraCarrinho() {
+    for (Map<Livro, Integer> item : carrinho) {
+        for (Map.Entry<Livro, Integer> entry : item.entrySet()) {
+            Livro livro = entry.getKey();
+            Integer quantidade = entry.getValue();
+            Compra compra = new Compra(livro, quantidade);
+            pedidos.addFirst(compra);
+        }
+    }
+    carrinho.clear();
+   }
+  
   public void realizaCompra(Livro livro, int qtde)
     {
+
       Compra compra = new Compra(livro, qtde);
       pedidos.addFirst(compra);
     }
 
+  // isso pode tirar era para o terminal
   public String[] getCarrinho() {
     String[] resposta = new String[carrinho.size()];
     int i = 0;
@@ -97,6 +117,12 @@ public class Cliente {
     return senha;
   }
 
+  // preciso disso no teste
+  public LinkedList<Compra> getPedidos(){
+    return pedidos;
+  }
+
+  // preciso disso no teste
   public LinkedList<Map<Livro, Integer>> getListaCarrinho() {
     return carrinho;
   }
