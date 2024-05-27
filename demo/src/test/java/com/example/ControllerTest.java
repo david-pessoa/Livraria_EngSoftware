@@ -44,6 +44,14 @@ public class ControllerTest
         Assert.assertEquals(c.getDisponibilidadeLivro("Boa noite Punpun"), false);
     }
 
+    @Test
+    public void testGetPrecoLivro()
+    {    
+        c.setUpCatalogo();
+        float resultado = c.getPrecoLivro("O Hobbit");
+
+        Assert.assertEquals(resultado, 38.0f, 0.0001);
+    }
 
 
     
