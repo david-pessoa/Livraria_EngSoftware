@@ -9,6 +9,7 @@ public class App //App == Boundary
       Controller c = new Controller(true); //Inicia controller
       boolean acesso_valido = false; //Controla o acesso
       String username = "", senha;
+      
 
       while(!acesso_valido)
       {
@@ -116,9 +117,14 @@ public class App //App == Boundary
                   else //Caso o livro esteja indisponível, poderá ser feita a reserva
                   {
                     System.out.println("Livro indisponível. Para reservá-lo, digite 5");
-                    System.out.print("Digite a quantidade que deseja adicionar: ");
-                    //int num_livros = s.nextInt(); s.nextLine();
-                    // Adiciona na reserva...
+                    
+                    int entrada = s.nextInt();s.nextLine();
+                    if (entrada ==5 ){
+                      System.out.print("Digite a quantidade que deseja reservar: ");
+                      int quatidadeReserva = s.nextInt();s.nextLine();
+                      
+
+                    }
                     c.sleep();
                     break;
                   }

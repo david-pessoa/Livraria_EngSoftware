@@ -13,6 +13,7 @@ public class Cliente//Classe para representar os clientes da loja
     private LinkedList<ItemCarrinho> carrinho = new LinkedList<>(); //Carrinho do cliente
     private LinkedList<Compra> pedidos = new LinkedList<>(); //Lista de pedidos realizados pelo cliente
     private static final int TOTAL_CLIENTES = 2;
+    private LinkedList<Reserva> reservas = new LinkedList<>(); // Lista de reservas do cliente
 
     public Cliente() //Construtor sem parâmetros
     {
@@ -69,6 +70,37 @@ public class Cliente//Classe para representar os clientes da loja
       carrinho.remove(index);
       realizaCompra(item.getItem(), item.getQuantidade());
     }
+
+    
+
+    // Método para reservar um livro
+    public void reservarLivro(Livro livro, int qtde) {
+        Reserva reserva = new Reserva(livro, qtde);
+        reservas.addFirst(reserva);
+    }
+
+    // Método para exibir as reservas
+    public void showReservas() {
+        if (reservas.isEmpty()) {
+            System.out.println("Não há reservas.");
+        } else {
+            System.out.println("\tMinhas reservas: ");
+            System.out.println("Nome do Livro\tQuantidade\tPreço do item\tData da reserva");
+            int i = 1;
+            for (Reserva reserva : reservas) {
+                String preco = String.format("%.2f", reserva.calculaTotalReserva());
+                System.out.println(i + ") " + reserva.getLivro().getNome() + "\t" + reserva.getQuantidade() + "\t" + preco + "\t" + reserva.getDataReserva());
+                i++;
+            }
+        }
+    }
+
+
+
+
+
+
+
 
     //opção de comprar todos os itens do carrinho (testar)
     public void CompraCarrinho()
