@@ -70,9 +70,8 @@ public class Controller {
 
   // compra tudo do carrinho (não testado manualmente)
     public void comprarDoCarrinho() {
-        Cliente cliente = acessaCliente(nome_cliente);
         if (cliente != null) {
-            cliente.compraCarrinho();
+            cliente_logado.compraCarrinho();
         }
     }
   }
