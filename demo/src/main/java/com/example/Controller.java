@@ -162,11 +162,5 @@ public class Controller
 
     public void clearScreen() {System.out.print("\033[H\033[2J");} //Limpar a tela quando retornar ao menu
 
-    //-------- Apenas para usar na classe ControllerTest---------
-    public Cliente getCliente_logado() {return cliente_logado;}
-    public Cliente[] getLista_clientes() {return lista_clientes;}
-    public Catalogo getCatalogo() {return catalogo;}
-
-
 }
 
