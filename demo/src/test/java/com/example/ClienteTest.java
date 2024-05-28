@@ -10,7 +10,7 @@ import org.junit.Assert;
 public class ClienteTest 
 {
     private Cliente cli_teste = new Cliente();
-    private Livro livro_teste = new Livro("LivroTeste", 99.99f, "Autor", "Categoria");
+    private Livro livro_teste = new Livro("LivroTeste", 99.99f, "Autor", "Categoria", true);
 
     @Before
     public void setUpCadastro() //Consertar setUpCadastro() dá erro...

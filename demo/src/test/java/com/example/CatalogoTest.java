@@ -15,8 +15,8 @@ public class CatalogoTest
     public void setUpCatalogo()
     {
         LinkedList<Livro> lista_livros = catalogo.setUpCatalogo(false); //Preenche lista com setUpCatalogo
-        Assert.assertEquals(lista_livros.getFirst().getNome(), "O Pequeno Príncipe");
-        Assert.assertEquals(lista_livros.getLast().getAutor(), "J.R.R. Tolkien");
+        Assert.assertEquals(lista_livros.getFirst().getNome(), "O Hobbit");
+        Assert.assertEquals(lista_livros.getLast().getAutor(), "John Green");
     }
 
     @Test

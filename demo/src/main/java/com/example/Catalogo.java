@@ -1,8 +1,8 @@
 package com.example;
-
-import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.LinkedList;
 
 public class Catalogo 
@@ -65,47 +65,59 @@ public class Catalogo
     {
         LinkedList<Livro> listaLivros = new LinkedList<>();
         
-        try {
-            // Abrir o arquivo binário para leitura
-            String caminho;
-            if(NaoEhTeste)
-              caminho = "./demo/src/main/java/com/example/livros.bin"; //Caminho para execução normal do programa
-            else
-              caminho = "../demo/src/main/java/com/example/livros.bin"; //Caminho para execução de testes do programa
+        String binFilename;
+        if(NaoEhTeste)
+          binFilename = "./demo/src/main/java/com/example/livros.bin";
+        else
+          binFilename = "../demo/src/main/java/com/example/livros.bin";
 
-            FileInputStream fileInput = new FileInputStream(caminho); //OBS: Mude o caminho se necessário
-            DataInputStream dataInput = new DataInputStream(fileInput);
-            
-            // Ler os dados do arquivo binário e criar objetos Livro
-            while (dataInput.available() > 0) {
-                String titulo = dataInput.readUTF();
-                float preco = dataInput.readFloat();
-                String autor = dataInput.readUTF();
-                String categoria = dataInput.readUTF();
-                //Lê disponibilidade
-                
-                // Criar objeto Livro e adicionar à linked list
-                Livro livro = new Livro(titulo, preco, autor, categoria);
-                listaLivros.add(livro);
+        try (FileInputStream fis = new FileInputStream(binFilename)) 
+        {
+            byte[] tituloBytes = new byte[100];
+            byte[] autorBytes = new byte[50];
+            byte[] generoBytes = new byte[30];
+
+            while (fis.available() > 0) 
+            {
+                // Ler título
+                fis.read(tituloBytes);
+                String titulo = new String(tituloBytes).trim();
+
+                // Ler preço
+                byte[] precoBytes = new byte[4];
+                fis.read(precoBytes);
+                float preco = ByteBuffer.wrap(precoBytes).order(ByteOrder.LITTLE_ENDIAN).getFloat();
+
+                // Ler autor
+                fis.read(autorBytes);
+                String autor = new String(autorBytes).trim();
+
+                // Ler gênero
+                fis.read(generoBytes);
+                String genero = new String(generoBytes).trim();
+
+                // Ler disponível
+                byte[] disponivelBytes = new byte[1];
+                fis.read(disponivelBytes);
+                boolean disponivel = disponivelBytes[0] != 0;
+
+                Livro new_livro = new Livro(titulo, preco, autor, genero, disponivel);
+                listaLivros.add(new_livro);
             }
-            
-            // Fechar o fluxo de entrada
-            dataInput.close();
-            fileInput.close();
-            
             return listaLivros;
-        } 
+        }          
         catch (IOException e) 
         {
             System.out.println("Ocorreu um erro ao ler o arquivo binário livros.bin: " + e.getMessage());
             return null;
         }
     }
+    
 
     public void showCatalogo() //Exibe o catálogo numa tabela
     {
       System.out.println("\n\t\t\t\t\t\t\tCatálogo");
-      int[] larguraColunas = {40, 12, 40, 20, 10}; //Largura de cada coluna 
+      int[] larguraColunas = {40, 12, 25, 25, 10}; //Largura de cada coluna 
       String[] cabecalho = {"Nome", "Preço", "Autor", "Categoria", "Disponibilidade"}; //Cabeçalho
         imprimirLinha(cabecalho, larguraColunas); //Imprime cabeçalho
         imprimirLinhaSeparadora(larguraColunas); //Imprime linha separadora
