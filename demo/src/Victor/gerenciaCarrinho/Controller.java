@@ -53,7 +53,7 @@ public class Controller {
 
   // remove completamente do carrinho
   // feito pelo Victor
-  public boolean removerDoCarrinho(String nome){
+  public void removerDoCarrinho(String nome){
     Livro livro = catalogo.buscaLivroNomeLivro(nome); 
             if(livro != null) {
                 cliente_logado.(livro, qtde);
