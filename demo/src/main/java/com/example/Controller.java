@@ -80,19 +80,13 @@ public class Controller
 
     public void realizaCompra(String livro_str, int qtde)
     {
-        if (qtde <= 0) 
+        Livro livro = catalogo.buscaLivroNome(livro_str); //busca o livro no catálogo
+        if(livro != null)
         {
-            System.out.println("Valor para quantidade de livros inválido!");
+            cliente_logado.realizaCompra(livro, qtde);
+            System.out.println("Compra realizada com sucesso!");
         }
-        else
-        {
-            Livro livro = catalogo.buscaLivroNome(livro_str); //busca o livro no catálogo
-            if(livro != null)
-            {
-                cliente_logado.addNoCarrinho(livro, qtde);
-                System.out.println("Livro adicionado com sucesso!");
-            }
-        }
+        
     }
 
     //------------------------------------------------- Métodos relativos a classe Livro e Catálogo -------------------------------------------------------------

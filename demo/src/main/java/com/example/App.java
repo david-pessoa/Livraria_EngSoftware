@@ -89,12 +89,28 @@ public class App //App == Boundary
 
                     if(escolhe_add == 2) //Compra o livro
                     {
+                      int num_livros;
                       System.out.print("Digite a quantidade que deseja adicionar: ");
-                      int num_livros = s.nextInt(); s.nextLine();
+                      while(true)
+                      {
+                        num_livros = s.nextInt(); s.nextLine();
+                        if(num_livros <= 0)
+                        {
+                          System.out.println("Quantidade de livros inválida!");
+                          System.out.print("Digite a quantidade que deseja adicionar: ");
+                        }
+                        else
+                          break;
+                      }
 
-                      //Inserir forma de pagamento da compra
-
-                      c.realizaCompra(resultado, num_livros);
+                      System.out.print("Forneça o local de entrega da compra: "); s.nextLine(); // Cliente insere local de entrega
+                      System.out.println("Escolha a forma de pagamento:");
+                      System.out.println("1. Cartão de crédito: "); // Cliente insere dados da compra
+                      System.out.println("2. Pix: ");
+                      System.out.println("3. Boleto: "); s.nextLine();
+                      System.out.println("Insira a forma de pagamento: "); s.nextLine();
+                      
+                      c.realizaCompra(resultado, num_livros); // Efetua a compra
                       c.sleep();
                       break;
                     }

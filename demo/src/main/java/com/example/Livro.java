@@ -13,13 +13,13 @@ public class Livro
     private boolean disponivel;
 
     // Construtor
-    public Livro(String nome, float preco, String autor, String categoria) {
+    public Livro(String nome, float preco, String autor, String categoria, boolean disponibilidade) {
         this.id = geraID();
         this.nome = nome;
         this.preco = preco;
         this.autor = autor;
         this.categoria = categoria;
-        this.disponivel = true; //alterar, livro disponível
+        this.disponivel = disponibilidade;
     }
 
     private int geraID() //Cria ID aleatório para o livro

@@ -4,7 +4,7 @@ import org.junit.Assert;
 
 public class ItemCarrinhoTest 
 {
-    private Livro livro_teste = new Livro("LivroTeste", 99.99f, "Autor", "Categoria");
+    private Livro livro_teste = new Livro("LivroTeste", 99.99f, "Autor", "Categoria", true);
 
     @Test
     public void calculaTotalItem()
