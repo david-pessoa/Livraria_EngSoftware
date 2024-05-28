@@ -27,22 +27,14 @@ case 3: // 3) Acessar meu carrinho
             System.out.print("Digite a quantidade que deseja adicionar: ");
             int quantidadeAdicionar = s.nextInt();
             s.nextLine();
-            if (c.buscaLivroNome(livroAdicionar) != null){
-              c.addNoCarrinho(c.buscaLivroNome(livroAdicionar), quantidadeAdicionar);
-            } else {
-              System.out.println("Livro não encontrado");
-            }
+            c.addNoCarrinho(c.buscaLivroNome(livroAdicionar), quantidadeAdicionar);
             
         } 
         else if (carrinhoChoice == 2)
         {
             System.out.print("Digite o nome do livro que deseja remover: ");
             String livroRemover = s.nextLine();
-            if (c.buscaLivroNome(livroRemover) != null){
-              c.removerDoCarrinho(livroRemover);
-            } else {
-              System.out.println("Livro não encontrado");
-            }
+            c.removerDoCarrinho(livroRemover);
         }
         else if (carrinhoChoice == 3)
         {
