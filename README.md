@@ -7,38 +7,38 @@ David ficou responsável pela parte de validação do acesso do usuário e pelos
 
 #### `Controller.java`
 David ficou responsável pelos métodos:
-    * Construtor
-    * `ValidaAcesso()`
-    * `showCarrinho()`
-    * `showCompras()`
-    * `addNoCarrinho()`
-    * `removeDoCarrinho()`
-    * `CompraItemDoCarrinho()`
-    * `CompraCarrinho()`
-    * `realizaCompra()`
-    * `MaisInfoLivro()`
-    * `buscaLivroNome()`
-    * `buscaLivroAutor()`
-    * `getDisponibilidadeLivro()`
-    * `showCatalogo()`
-    * `getPrecoLivro()`
-    * `sleep()`
-    * `clearScreen()`
+* Construtor
+* `ValidaAcesso()`
+* `showCarrinho()`
+* `showCompras()`
+* `addNoCarrinho()`
+* `removeDoCarrinho()`
+* `CompraItemDoCarrinho()`
+* `CompraCarrinho()`
+* `realizaCompra()`
+* `MaisInfoLivro()`
+* `buscaLivroNome()`
+* `buscaLivroAutor()`
+* `getDisponibilidadeLivro()`
+* `showCatalogo()`
+* `getPrecoLivro()`
+* `sleep()`
+* `clearScreen()`
 
 #### `Catalogo.java`
 David ficou responsável pelos métodos:
-    * `getLivros_do_catalogo()`
-    * `setUpCatalogo()`
-    * `showCatalogo()` e seus auxiliares
+ * `getLivros_do_catalogo()`
+ * `setUpCatalogo()`
+ * `showCatalogo()` e seus auxiliares
 
 #### `Cliente.java`
 David ficou responsável pelos métodos:
-    * `realizaCompra()`
-    * `CompraItemDoCarrinho()`
-    * `CompraCarrinho()`
-    * `showCarrinho()`
-    * `showCompras()`
-    * `setUpCadastro()`
+ * `realizaCompra()`
+ * `CompraItemDoCarrinho()`
+ * `CompraCarrinho()`
+ * `showCarrinho()`
+ * `showCompras()`
+ * `setUpCadastro()`
 
 #### `Compra.java`
 David ficou responsável por construir toda a classe Compra
@@ -53,24 +53,24 @@ David ficou responsável por construir toda a classe Livro
 
 #### `CatalogoTest.java`
 David ficou responsável por criar os testes para os métodos:
-    * `setUpCatalogo()`
-    * `buscaLivroNome()`
-    * `buscaLivroAutor()`
+ * `setUpCatalogo()`
+ * `buscaLivroNome()`
+ * `buscaLivroAutor()`
 
 #### `ClienteTest.java`
 David ficou responsável por criar os testes para os métodos:
-    * `setUpCadastro()`
-    * `realizaCompra()`
+ * `setUpCadastro()`
+ * `realizaCompra()`
 
 #### `CompraTest.java`
 David ficou responsável por criar os testes para o método: `calculaTotalCompra()`
 
 #### `ControllerTest.java`
 David ficou responsável por criar os testes para os métodos:
-    * `ValidaAcesso()`
-    * `buscaLivroNome()`
-    * `buscaLivroAutor()`
-    * `getDisponibilidade()`
+ * `ValidaAcesso()`
+ * `buscaLivroNome()`
+ * `buscaLivroAutor()`
+ * `getDisponibilidade()`
 
 #### `ItemCarrinhoTest.java`
 David ficou responsável por criar os testes para o método: `calculaTotalItem()`
