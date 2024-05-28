@@ -52,6 +52,7 @@ public class Controller {
 
 
   // remove completamente do carrinho
+  // feito pelo Victor
   public boolean removerDoCarrinho(String nome){
     Livro livro = catalogo.buscaLivroNomeLivro(nome); 
             if(livro != null) {
@@ -60,15 +61,8 @@ public class Controller {
             }
   }
 
-  // edita a quantidade no carrinho (pode tirar)
-  public boolean editarCarrinho(int id, int quant){
-    if (catalogo.buscaIDlivro(id) != null){
-      return acessaCliente(nome_cliente).editarCarrinho(catalogo.buscaIDlivro(id), quant);
-    }
-    return false;
-  }
-
   // compra tudo do carrinho (não testado manualmente)
+  // feito pelo Victor
     public void comprarDoCarrinho() {
         if (cliente != null) {
             cliente_logado.compraCarrinho();

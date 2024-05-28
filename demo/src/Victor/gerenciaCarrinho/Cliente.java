@@ -46,19 +46,6 @@ public class Cliente {
         return false;
     }
 
-  // caso precise (pra mim tira)
-    public boolean editarCarrinho(Livro livro, int quant) {
-        if (livro == null || quant <= 0) {
-            return false;
-        }
-        for (ItemCarrinho item : carrinho) {
-            if (item.getLivro().equals(livro)) {
-                item.setQuantidade(quant);
-                return true;
-            }
-        }
-        return false;
-    }
 
   // feito pelo victor que comprar tudo do carrinho
     public void compraCarrinho() {
@@ -102,11 +89,13 @@ public class Cliente {
     }
 
   // preciso disso no teste
+  // feito pelo Victor
     public LinkedList<Compra> getPedidos() {
         return pedidos;
     }
 
   // preciso disso no teste
+  // feito pelo Victor
     public LinkedList<ItemCarrinho> getListaCarrinho() {
         return carrinho;
     }
