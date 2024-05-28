@@ -174,5 +174,36 @@ public class Controller
     public Catalogo getCatalogo() {return catalogo;}
 
 
+    // metodo para vizualizar reservas
+
+    
+    // ... outros atributos e métodos
+
+    //------------------------------------------------- Métodos relativos a classe Cliente -------------------------------------------------------------
+
+    // Método para realizar uma reserva
+    public void reservarLivro(String livro_str, int qtde) {
+        if (qtde <= 0) {
+            System.out.println("Valor para quantidade de livros inválido!");
+        } else {
+            Livro livro = catalogo.buscaLivroNome(livro_str); // busca o livro no catálogo
+            if (livro != null) {
+                cliente_logado.reservarLivro(livro, qtde);
+                System.out.println("Livro reservado com sucesso!");
+            }
+        }
+    }
+
+    // Método para exibir reservas feitas pelo cliente
+    public void showReservas() {
+        cliente_logado.showReservas();
+    }
+
+    
 }
+    
+    
+
+
+
 

@@ -38,7 +38,9 @@ public class App //App == Boundary
         System.out.println("3) Acessar meu carrinho");
         System.out.println("4) Acessar meus pedidos");
         System.out.println("5) Acessar reservas feitas");
+        
         System.out.println("6) Sair");
+
         System.out.print("Escolha uma opção: ");
         choice = s.nextInt(); s.nextLine();
 
@@ -122,8 +124,10 @@ public class App //App == Boundary
                     if (entrada ==5 ){
                       System.out.print("Digite a quantidade que deseja reservar: ");
                       int quatidadeReserva = s.nextInt();s.nextLine();
-                      
-
+                      //metodo  de reserva realizar reserva junto do controler
+                      int quantidadeReserva = s.nextInt();
+                      s.nextLine();
+                      c.reservarLivro(resultado, quantidadeReserva); // Chama o método de reserva no controller
                     }
                     c.sleep();
                     break;
@@ -141,6 +145,15 @@ public class App //App == Boundary
             s.nextLine();
             break;
           }
+
+          case 5: // 5) Acessar reservas feitas
+                {
+                    c.showReservas();
+                    System.out.println("\nAperte Enter para voltar ao Menu");
+                    s.nextLine();
+                    break;
+                }
+
 
           case 6: // 6) Sair
           {
