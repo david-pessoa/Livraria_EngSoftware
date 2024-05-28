@@ -5,11 +5,11 @@
 
 ### Classes e Métodos Implementados
 
-#### 1. App (boundary)
+#### App (boundary)
 - **Manipulação do carrinho**
   - Implementação de funcionalidades relacionadas à manipulação do carrinho de compras.
 
-#### 2. Catalogo
+#### Catalogo
 - **buscaLivroNome**
   - Método para buscar um livro pelo nome.
 - **buscaLivroAutor**
@@ -17,7 +17,7 @@
 - **buscaIDlivro**
   - Método para buscar um livro pelo ID.
 
-#### 3. Cliente
+#### Cliente
 - **addNoCarrinho**
   - Método para adicionar um item ao carrinho.
   - **Testes**: Implementação dos testes para este método.
@@ -28,7 +28,7 @@
   - Método para realizar a compra dos itens no carrinho.
   - **Testes**: Implementação dos testes para este método.
 
-#### 4. itemCarrinho
+#### itemCarrinho
 - Implementação completa da classe `itemCarrinho`.
 
 <!--links para os repositórios de referência: -->
