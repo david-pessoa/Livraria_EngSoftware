@@ -8,25 +8,13 @@ public class Catalogo {
     this.livros_do_catalogo = livros;
   }
 
-  // Procura um livro no catálogo pelo nome do livro
-  public Livro buscaLivroNome(String nome) {
+  // Procura um livro no catálogo pelo nome do livro (eu preciso disso)
+  public Livro buscaLivroNomeLivro(String nome) {
     for (Livro l : livros_do_catalogo) {
       String temp = l.getNome();
       temp = temp.toLowerCase();
       nome = nome.toLowerCase();
       if (temp.equals(nome))
-        return l;
-    }
-    return null;
-  }
-
-  // Procura um livro no catálogo pelo nome do autor
-  public Livro buscaLivroAutor(String autor) {
-    for (Livro l : livros_do_catalogo) {
-      String temp = l.getNome();
-      temp = temp.toLowerCase();
-      autor = autor.toLowerCase();
-      if (temp.equals(autor))
         return l;
     }
     return null;
@@ -45,7 +33,7 @@ public class Catalogo {
     }
   }
 
-  public Livro buscaIDlivro(int id) // funciona mas NÃO MUDA O NOME
+  public Livro buscaIDlivro(int id)
   {
     for (Livro l : livros_do_catalogo) {
       if (l.getId() == id)

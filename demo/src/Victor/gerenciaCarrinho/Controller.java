@@ -2,11 +2,14 @@ import java.util.LinkedList;
 import java.util.Arrays;
 
 public class Controller {
+  private Cliente cliente_logado;
   private String nome_cliente; 
   private Catalogo catalogo;
   private Cliente[] clientes;
   private int num_clientes;
 
+
+// isso aqui tira
   public Controller(){ // controller com o teste
     this("Ronaldo", 
          new Catalogo(new LinkedList<Livro>(Arrays.asList(
@@ -16,49 +19,12 @@ public class Controller {
   }
 
   
-
+// isso aqui tira
   public Controller(String nome_cliente, Catalogo catalogo, Cliente[] clientes, int num_clientes){
     this.nome_cliente = nome_cliente;
     this.catalogo = catalogo;
     this.clientes = clientes;
     this.num_clientes = num_clientes;
-  }
-
-  
-  public Cliente acessaCliente(String nome) {
-    for (int i = 0; i < num_clientes; i++) {
-      if (clientes[i].getNome().equals(nome)) {
-        return clientes[i];
-      }
-    }
-    return null;
-  }
-
-  public String buscaCliente(String username) {
-    for (int i = 0; i < num_clientes; i++) {
-      if (clientes[i].nome == username) {
-        return clientes[i].nome;
-      }
-    }
-    return "";
-  }
-
-  public boolean validaAcesso(String username, String senha) {
-    for (int i = 0; i < num_clientes; i++) {
-      if (clientes[i].nome == username) {
-        if (clientes[i].ValidaAcesso(senha)){
-          this.nome_cliente = username;
-          return true;
-        }
-      }
-    }
-    return false;
-  }
-
-
-  // mostra o catalogo
-  public void buscaTodosLivros(){
-    catalogo.showCatalogo();
   }
 
   // ver carrinho simplificado 
@@ -69,24 +35,32 @@ public class Controller {
       return acessaCliente(nome_cliente).getCarrinho();
     }
   }
-
-  // adiciona item ao carrinho
-  public boolean adicionarNoCarrinho(int id, int quant){
-    if (catalogo.buscaIDlivro(id) != null){
-      return acessaCliente(nome_cliente).adicionarNoCarrinho(catalogo.buscaIDlivro(id), quant);
+  
+// feito pelo Victor
+    public void addNoCarrinho(String livro_str, int qtde) //Adiciona um livro no carrinho pelo nome
+    {
+        if (qtde <= 0) {
+            System.out.println("Valor para quantidade de livros inválido!");
+        }else{
+            Livro livro = catalogo.buscaLivroNomeLivro(livro_str); //busca o livro no catálogo e retorna o livro
+            if(livro != null){
+                cliente_logado.addNoCarrinho(livro, qtde);
+                System.out.println("Livro adicionado com sucesso!");
+            }
+        }
     }
-    return false;
+
+
+  // remove completamente do carrinho
+  public boolean removerDoCarrinho(String nome){
+    Livro livro = catalogo.buscaLivroNomeLivro(nome); 
+            if(livro != null) {
+                cliente_logado.(livro, qtde);
+                System.out.println("Livro removido com sucesso!");
+            }
   }
 
-  // remove completamente o carrinho
-  public boolean removerDoCarrinho(int id){
-    if (catalogo.buscaIDlivro(id) != null){
-      return acessaCliente(nome_cliente).removerDoCarrinho(catalogo.buscaIDlivro(id));
-    }
-    return false;
-  }
-
-  // edita a quantidade no carrinho
+  // edita a quantidade no carrinho (pode tirar)
   public boolean editarCarrinho(int id, int quant){
     if (catalogo.buscaIDlivro(id) != null){
       return acessaCliente(nome_cliente).editarCarrinho(catalogo.buscaIDlivro(id), quant);

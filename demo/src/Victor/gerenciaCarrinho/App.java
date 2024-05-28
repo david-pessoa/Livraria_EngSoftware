@@ -27,7 +27,7 @@ case 3: // 3) Acessar meu carrinho
             System.out.print("Digite a quantidade que deseja adicionar: ");
             int quantidadeAdicionar = s.nextInt();
             s.nextLine();
-            c.addNoCarrinho(c.buscaLivroNome(livroAdicionar), quantidadeAdicionar);
+            c.addNoCarrinho(livroAdicionar, quantidadeAdicionar);
             
         } 
         else if (carrinhoChoice == 2)
@@ -38,7 +38,7 @@ case 3: // 3) Acessar meu carrinho
         }
         else if (carrinhoChoice == 3)
         {
-            c.realizaCompra();
+            c.comprarDoCarrinho();
             System.out.println("Compra finalizada com sucesso!");
             c.sleep();
             break; // Volta ao menu principal após finalizar a compra
