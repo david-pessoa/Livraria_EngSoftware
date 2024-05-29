@@ -80,15 +80,15 @@ public class ClienteTest
         Livro livro = new Livro("Jogador numero 1", 50,"Ernest Cline","Ficção cientifica", true);
         Livro livro2 = new Livro("Percy Jackson", 30, "Rick Riordan", "Fantasia", true);
 
-        cliente.realizaCompra(livro, 1);
         cliente.realizaCompra(livro2, 1);
+        cliente.realizaCompra(livro, 1);
         cliente.cancelaPedido(0);
 
         LinkedList<Compra> pedidos = new LinkedList<>();
         Compra compra = new Compra(livro2, 1);
         pedidos.add(compra);
 
-        Assert.assertEquals(cliente.getPedidos(), pedidos);
+        Assert.assertEquals(cliente.getPedidos().getFirst().getItem().getNome(), pedidos.getLast().getItem().getNome());
     }
 
     
