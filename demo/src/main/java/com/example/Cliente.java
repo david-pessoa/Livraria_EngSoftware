@@ -34,6 +34,7 @@ public class Cliente//Classe para representar os clientes da loja
     public String getEmail(){return email;}
     private String getSenha(){return senha;}
     public LinkedList<Compra> getPedidos() {return pedidos;}
+    public LinkedList<ItemCarrinho> getCarrinho() {return carrinho;}
 
     //Setters
     public void setNome(String nome){this.nome = nome;}
