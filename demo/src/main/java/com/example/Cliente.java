@@ -2,6 +2,7 @@ package com.example;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.LinkedList;
 
 public class Cliente//Classe para representar os clientes da loja
@@ -102,6 +103,33 @@ public class Cliente//Classe para representar os clientes da loja
         }
       }
     }
+
+    public void cancelaPedido(int indice)//Cliente cancela pedido
+    {
+      if (indice < 0 || indice >= pedidos.size()){
+        System.out.println("Indice inválido");
+        return;
+      }
+      String[] dataAtual = LocalDate.now().toString().split("-");
+      int somaDataAtual = (Integer.parseInt(dataAtual[0])) * 365 + (Integer.parseInt(dataAtual[1]))
+      * 30 + Integer.parseInt(dataAtual[2]);
+
+      Compra pedido = pedidos.get(indice);
+
+      String[] dataPedido = pedido.getData_compra().split("-");
+      int somaDataPedido = (Integer.parseInt(dataPedido[0])) * 365 + (Integer.parseInt(dataPedido[1]))
+      * 30 + Integer.parseInt(dataPedido[2]);
+      // Verifica se o pedido foi feita a mais de uma semana, se sim não é possível cancelá-lo
+      
+      if (somaDataAtual - somaDataPedido > 7){
+        System.out.println("Desculpe, não foi possível cancelar o pedido porque foi efetuado a mais de uma semana");
+        return;
+      }
+      pedidos.remove(indice);
+      System.out.println("Pedido foi cancelado com sucesso");
+      System.out.println("Valor de" + pedido.getValor_compra() + "reembolsado");
+    }
+
 
     public void showCompras() //Exibe lista de pedidos feitos pelo cliente
     {

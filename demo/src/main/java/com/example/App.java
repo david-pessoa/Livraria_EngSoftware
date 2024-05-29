@@ -214,6 +214,38 @@ public class App //App == Boundary
         break;
     }
 
+    case 4:
+          {
+            if (c.getCliente_logado().getPedidos().size() == 0){
+              System.out.println("Não há pedidos feitos");
+              c.sleep();
+              break;
+            }
+            c.showCompras();
+            System.out.println("Deseja\n0) Voltar ao menu principal\n1) Cancelar um pedido");
+            int cancela = s.nextInt();s.nextLine();
+            if (cancela == 0)
+              break;
+            while (true)
+            {
+              if (c.getCliente_logado().getPedidos().size() == 0){
+                System.out.println("Não há pedidos para serem cancelados");
+                break;
+              }
+              c.showCompras();
+
+              System.out.println("\nPara voltar ao menu pressione 0\n");
+              System.out.println("Digite o indice do pedido que deseja cancelar: ");
+
+              int indice = s.nextInt(); s.nextLine();
+
+              if (indice == 0) break;
+
+              c.cancelaPedido(indice-1);
+            } 
+            break;
+          }
+
     case 5: // 5) Acessar reservas feitas
                 {
                     c.showReservas();
@@ -235,11 +267,6 @@ public class App //App == Boundary
         }
 
       }
-
-      
-
-
-
       s.close();
     }
 }

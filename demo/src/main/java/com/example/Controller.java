@@ -165,6 +165,11 @@ public class Controller
         cliente_logado.showReservas();
     }
 
+    public void cancelaPedido(int index)
+    {
+        cliente_logado.cancelaPedido(index);
+    }
+
     //------------------------------------------------- Outros métodos -------------------------------------------------------------
 
     public void sleep() //Dorme por 1,5s
@@ -180,5 +185,8 @@ public class Controller
 
     public void clearScreen() {System.out.print("\033[H\033[2J");} //Limpar a tela quando retornar ao menu
 
+    public Cliente getCliente_logado() {return cliente_logado;}
+    public Cliente[] getLista_clientes() {return lista_clientes;}
+    public Catalogo getCatalogo() {return catalogo;}
 }
 

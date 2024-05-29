@@ -73,6 +73,24 @@ public class ClienteTest
         assertEquals(0, carrinho.size());
     }
 
+    @Test
+    public void testCancelaPedido()
+    {
+        Cliente cliente = new Cliente();
+        Livro livro = new Livro("Jogador numero 1", 50,"Ernest Cline","Ficção cientifica", true);
+        Livro livro2 = new Livro("Percy Jackson", 30, "Rick Riordan", "Fantasia", true);
+
+        cliente.realizaCompra(livro, 1);
+        cliente.realizaCompra(livro2, 1);
+        cliente.cancelaPedido(0);
+
+        LinkedList<Compra> pedidos = new LinkedList<>();
+        Compra compra = new Compra(livro2, 1);
+        pedidos.add(compra);
+
+        Assert.assertEquals(cliente.getPedidos(), pedidos);
+    }
+
     
     
 

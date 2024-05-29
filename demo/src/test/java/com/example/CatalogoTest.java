@@ -39,4 +39,12 @@ public class CatalogoTest
         Assert.assertEquals(livro.getCategoria(), "Distopia");
     }
 
+    @Test
+    public void testGetPrecoLivro()
+    {    
+        LinkedList<Livro> lista_livros = catalogo.setUpCatalogo(false);
+        float preco = catalogo.buscaLivroNome("O Hobbit").getPreco();
+        Assert.assertEquals(preco, 38.0f, 0.0001);
+    }
+
 }
