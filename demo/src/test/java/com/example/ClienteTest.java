@@ -34,6 +34,7 @@ public class ClienteTest
         Assert.assertEquals(lista_pedidos.getFirst().getQuantidade(), 2);
     }
 
+  // testando adicionar no carrinho
     @Test
     public void testAdicionarNoCarrinho() {
         cli_teste.addNoCarrinho(livro_teste2, 2);
@@ -43,6 +44,7 @@ public class ClienteTest
         assertEquals(2, carrinho.get(0).getQuantidade());
     }
 
+  // testando remover do carrinho
     @Test
     public void testRemoverDoCarrinho() {
         cli_teste.addNoCarrinho(livro_teste, 2);
@@ -51,6 +53,8 @@ public class ClienteTest
         assertEquals(0, carrinho.size());
     }
 
+
+// testando comprar tudo do carrinho
     @Test
     public void testRealizaCompra() {
         cli_teste.addNoCarrinho(livro_teste, 2);
