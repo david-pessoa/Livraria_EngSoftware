@@ -135,14 +135,20 @@ public class App //App == Boundary
                   else //Caso o livro esteja indisponível, poderá ser feita a reserva
                   {
                     System.out.println("Livro indisponível. Para reservá-lo, digite 5");
-                    System.out.print("Digite a quantidade que deseja adicionar: ");
-                    //int num_livros = s.nextInt(); s.nextLine();
-                    // Adiciona na reserva...
-                    c.sleep();
+                    int entrada = s.nextInt();s.nextLine();
+                    if (entrada ==5 ){
+                      System.out.print("Digite a quantidade que deseja reservar: ");
+                      //metodo  de reserva realizar reserva junto do controler
+                      int quantidadeReserva = s.nextInt();s.nextLine();
+                      c.reservarLivro(resultado, quantidadeReserva); // Chama o método de reserva no controller
+                    }
+                    c.sleep(); //Tempo infinito (resolver)
                     break;
                   }
-                }       
+                }
+                    
               }
+              break; 
             }
             break;
           }
@@ -207,6 +213,14 @@ public class App //App == Boundary
       }
         break;
     }
+
+    case 5: // 5) Acessar reservas feitas
+                {
+                    c.showReservas();
+                    System.out.println("\nAperte Enter para voltar ao Menu");
+                    s.nextLine();
+                    break;
+                }
 
           case 6: // 6) Sair
           {
