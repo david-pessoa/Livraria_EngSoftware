@@ -1,3 +1,5 @@
+OBS: Para fazer login na aplicação use como nome de Usuário: "João" e senha: "senha"
+
 # Participação de cada integrante do grupo:
 
 ## David Pessoa - Caso de Uso Realiza Compra
