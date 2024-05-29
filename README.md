@@ -107,3 +107,40 @@ David ficou responsável por criar os testes para os métodos getters e construt
 
 #### itemCarrinho
 - Implementação completa da classe `itemCarrinho`.
+
+
+
+## Contribuições de joão pedro
+
+### Classes e Métodos Implementados
+
+#### Classe reserva 
+- **possibilidade de reservar rilvro**
+  - Implementação de funcionalidades relacionadas à realização da reserva
+  - data da reserva
+  - quantidade de livros
+  - get livros
+
+#### Controller
+- **metodos**
+  - Método para reservar livro .
+  - outros metodos
+  - costrutores
+
+#### Cliente
+- **lista de reservas**
+  - Método para reservar um livro 
+  - metodo para exibir reservas
+ 
+#### app
+  -desenvolvimento do app
+    -dessnenvolvimento do menu
+    -opções de reserva
+    -boundry
+#### 
+ - testes reserva,
+ - app
+ - cliente
+ - controller
+    
+
