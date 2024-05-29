@@ -78,9 +78,6 @@ David ficou responsável por criar os testes para o método: `calculaTotalItem()
 #### `LivroTest.java`
 David ficou responsável por criar os testes para os métodos getters e construtor
 
-![Frame 4](https://github.com/david-pessoa/Livraria_EngSoftware/assets/104323068/878fabc6-3fbc-4bdc-b47c-ae1e05e8acd0)
-
-
 ## Contribuições de Victor Vaglieri
 
 ### Classes e Métodos Implementados
