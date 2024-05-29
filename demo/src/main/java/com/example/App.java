@@ -161,7 +161,7 @@ public class App //App == Boundary
             break;
           }
 
-          case 3: // 3) Acessar meu carrinho
+          case 3: // 3) Acessar meu carrinho e poder manipula-lo 
       {
     while (true)
     {

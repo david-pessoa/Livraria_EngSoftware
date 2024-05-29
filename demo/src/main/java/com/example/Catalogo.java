@@ -15,7 +15,7 @@ public class Catalogo
       this.livros_do_catalogo = this.setUpCatalogo(NaoEhTeste);
     }
 
-    //Procura um livro no catálogo pelo nome do livro
+    //Procura um livro no catálogo pelo nome do livro encontrando o primeiro com o mesmo nome
     public Livro buscaLivroNome(String nome)
     {
       for(Livro l : this.livros_do_catalogo)

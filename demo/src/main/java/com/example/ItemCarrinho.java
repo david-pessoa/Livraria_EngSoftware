@@ -1,6 +1,6 @@
 package com.example;
 
-class ItemCarrinho // Classe que representa um livro dentro do carrinho, com o Livro e a sua respectiva quantidade
+class ItemCarrinho // Classe que representa um livro dentro do carrinho, com o Livro e a sua respectiva quantidade especificamente para o carrinho 
 {
   private Livro item;
   private int quantidade;

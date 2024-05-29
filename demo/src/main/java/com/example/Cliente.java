@@ -51,7 +51,7 @@ public class Cliente//Classe para representar os clientes da loja
       pedidos.addFirst(compra);
     }
 
-    //Método para adicionar um livro ao carrinho do cliente
+    //Método para adicionar um livro ao carrinho do cliente passando um livro e a quantidade
     public void addNoCarrinho(Livro livro, int qtde)
     {
       ItemCarrinho new_item = new ItemCarrinho(livro, qtde);
