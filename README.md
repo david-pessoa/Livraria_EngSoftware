@@ -152,5 +152,16 @@ David ficou responsável por criar os testes para os métodos getters e construt
  - cliente
  - controller
 
--------------
+## Contribuições de Pedro Nomura
+Classe App
+
+Menu de opções
+Classe Cliente
+
+Método cancelaPedido
+Classe ClienteTest
+
+Teste do método cancelaPedido
+Classe ControllerTest
+Teste do método getPrecoLivro
 
