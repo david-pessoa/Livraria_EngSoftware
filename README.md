@@ -133,14 +133,18 @@ David ficou responsável por criar os testes para os métodos getters e construt
   - metodo para exibir reservas
  
 #### app
+
   -desenvolvimento do app
-    -dessnenvolvimento do menu
-    -opções de reserva
-    -boundry
-#### 
+  -dessnenvolvimento do menu
+  -opções de reserva
+  -boundry
+    
+#### testes
+
  - testes reserva,
  - app
  - cliente
  - controller
-    
+
+-------------
 
